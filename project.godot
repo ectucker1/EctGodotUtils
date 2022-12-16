@@ -19,7 +19,11 @@ LiveValuesClient="*res://addons/live_values/LiveValuesClient.cs"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/godot-plugin-refresher/plugin.cfg", "res://addons/live_values/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/live_values/plugin.cfg" )
+
+[mono]
+
+project/assembly_name="EctGodotUtils"
 
 [physics]
 
