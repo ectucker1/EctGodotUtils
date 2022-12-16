@@ -1,0 +1,79 @@
+image: barichello/godot-ci:mono-3.5.1
+
+stages:
+  - export
+  - deploy
+
+variables:
+  EXPORT_NAME: ectgodotutils
+  GIT_SUBMODULE_STRATEGY: recursive
+
+before_script:
+  - mkdir -v -p $EXPORT_NAME-linux
+  - mkdir -v -p $EXPORT_NAME-windows
+  - mkdir -v -p $EXPORT_NAME-mac
+  - mkdir -v -p web
+
+linux:
+  only: ['web', 'tags']
+  stage: export
+  script:
+    - godot -v --export "Linux/X11" ./$EXPORT_NAME-linux/$EXPORT_NAME.x86_64
+  artifacts:
+    name: $EXPORT_NAME-$CI_JOB_NAME
+    paths:
+      - $EXPORT_NAME-linux
+  tags:
+    - docker
+
+windows:
+  only: ['web', 'tags']
+  stage: export
+  script:
+    - godot -v --export "Windows Desktop" ./$EXPORT_NAME-windows/$EXPORT_NAME.exe
+  artifacts:
+    name: $EXPORT_NAME-$CI_JOB_NAME
+    paths:
+      - $EXPORT_NAME-windows
+  tags:
+    - docker
+
+mac:
+  only: ['web', 'tags']
+  stage: export
+  script:
+    - godot -v --export "Mac OSX" ./$EXPORT_NAME-mac/$EXPORT_NAME.zip
+  artifacts:
+    name: $EXPORT_NAME-$CI_JOB_NAME
+    paths:
+      - $EXPORT_NAME-mac
+  tags:
+    - docker
+
+web:
+  only: ['web', 'tags']
+  stage: export
+  script:
+    - godot -v --export "HTML5" ./web/index.html
+  artifacts:
+    name: $EXPORT_NAME-$CI_JOB_NAME
+    paths:
+      - web
+  tags:
+    - docker
+
+# GitLab Pages Deploy
+pages:
+  only: ['web', 'tags']
+  stage: deploy
+  dependencies:
+    - web
+  script:
+    - rm -r -f public
+    - mkdir -p public
+    - mv web/** ./public
+  artifacts:
+    paths:
+      - public
+  tags:
+    - docker
