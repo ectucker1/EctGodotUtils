@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Utility node that can create a breathing animation for a character made of multiple parts.
@@ -8,7 +9,10 @@ using System;
 public class BreathingAnim : Node
 {
     [Export]
-    private NodePath[] _breathingSections = {};
+    private NodePath _searchRoot = "";
+    
+    [Export]
+    private string[] _breathingSearches = {};
     
     [Export]
     private float[] _breathingTimes = {};
@@ -19,7 +23,7 @@ public class BreathingAnim : Node
     [Export]
     private float _bottomHoldTime = 0.3f;
 
-    private Node2D[] _sections;
+    private List<Node2D>[] _sections;
 
     private float _time = 0.0f;
     private int _sectionIndex = 0;
@@ -35,9 +39,15 @@ public class BreathingAnim : Node
 
     public override void _Ready()
     {
-        _sections = new Node2D[_breathingSections.Length];
-        for (int i = 0; i < _breathingSections.Length; i++)
-            _sections[i] = GetNode<Node2D>(_breathingSections[i]);
+        Node root = GetNode(_searchRoot);
+        
+        _sections = new List<Node2D>[_breathingSearches.Length];
+        for (int i = 0; i < _breathingSearches.Length; i++)
+        {
+            _sections[i] = new List<Node2D>();
+            if (root.FindNode(_breathingSearches[i]) is Node2D node2D)
+                _sections[i].Add(node2D);
+        }
         
         if (_sections.Length != _breathingTimes.Length)
             SetProcess(false);
@@ -78,7 +88,8 @@ public class BreathingAnim : Node
     {
         while (_time >= _breathingTimes[_sectionIndex])
         {
-            _sections[_sectionIndex].Position += direction;
+            foreach (var node in _sections[_sectionIndex])
+                node.Position += direction;
             _sectionIndex++;
             if (_sectionIndex >= _sections.Length)
             {

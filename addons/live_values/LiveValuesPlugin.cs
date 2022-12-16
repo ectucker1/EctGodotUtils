@@ -1,6 +1,7 @@
 #if TOOLS
+using System;
 using Godot;
-using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 /// The plugin used to show live values in the editor.
@@ -171,11 +172,21 @@ public class LiveValuesPlugin : EditorPlugin
             _lastSave += delta;
             if (_lastSave > 1.0f)
             {
-                CopyGUIValuesToModel();
-                _model.LoadJSON(true);
-                _model.SaveJSON();
-                CopyModelValuesToGUI();
-                _lastSave = 0;
+                try
+                {
+                    CopyGUIValuesToModel();
+                    _model.LoadJSON(true);
+                    _model.SaveJSON();
+                    CopyModelValuesToGUI();
+                    _lastSave = 0;
+                }
+                catch (Exception e)
+                {
+                    GD.PrintErr("Error saving live values. Disabling until plugin refresh.");
+                    SetProcess(false);
+                    SetPhysicsProcess(false);
+                    // TODO maybe I can refresh myself?
+                }
             }
         }
     }

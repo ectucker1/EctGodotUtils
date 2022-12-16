@@ -27,4 +27,16 @@ public static class AnimationPlayerExtensions
         if (player.CurrentAnimation != name && !player.GetQueue().Contains(name))
             player.Queue(name);
     }
+
+    /// <summary>
+    /// Starts travel to the given state if the current path does not end there.
+    /// </summary>
+    /// <param name="stateMachine">The state machine to travel in</param>
+    /// <param name="name">The name of the state to travel to</param>
+    public static void TravelIfNot(this AnimationNodeStateMachinePlayback stateMachine, string name)
+    {
+        string[] path = stateMachine.GetTravelPath();
+        if (path.Length == 0 || path[path.Length - 1] != name)
+            stateMachine.Travel(name);
+    }
 }
