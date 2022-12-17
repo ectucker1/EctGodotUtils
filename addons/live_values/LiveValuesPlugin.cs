@@ -98,8 +98,8 @@ public class LiveValuesPlugin : EditorPlugin
                 _numbox.MaxValue = value.Max;
                 _numbox.Step = 0.000001f;
                 _numbox.Value = value.FloatVal;
-                _numbox.Connect("value_changed", this, nameof(_ValueChanged), new Array() {_slider});
-                _slider.Connect("value_changed", this, nameof(_ValueChanged), new Array() {_numbox});
+                _numbox.Connect(SignalNames.RANGE_VALUE_CHANGED, this, nameof(_ValueChanged), new Array() {_slider});
+                _slider.Connect(SignalNames.RANGE_VALUE_CHANGED, this, nameof(_ValueChanged), new Array() {_numbox});
                 _valueContainer.AddChild(sliderNumbox);
                 break;
             case LVType.SWITCH:
