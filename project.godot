@@ -19,6 +19,8 @@ config/icon="res://icon.png"
 LiveValuesClient="*res://addons/live_values/LiveValuesClient.cs"
 DebugAutoload="*res://base/debug_autoload.tscn"
 CameraEffects="*res://util/camera/CameraEffects.cs"
+AudioSettings="*res://util/audio/AudioSettings.cs"
+PauseAutoload="*res://base/pause_autoload.tscn"
 
 [display]
 
@@ -39,6 +41,16 @@ enabled=PoolStringArray( "res://addons/godot-plugin-refresher/plugin.cfg", "res:
 debug_show={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777246,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+fullscreen={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777254,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

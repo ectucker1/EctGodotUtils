@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://test/audio/test_music.ogg" type="AudioStream" id=1]
+[ext_resource path="res://test/audio/step1.ogg" type="AudioStream" id=2]
+[ext_resource path="res://test/audio/AudioTest.cs" type="Script" id=3]
+
+[node name="AudioTest" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+autoplay = true
+bus = "Music"
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "Effects"
