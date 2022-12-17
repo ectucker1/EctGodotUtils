@@ -12,17 +12,28 @@ public class CameraEffects : Node
 
     private Vector2 _screenshakeOffet = Vector2.Zero;
     private Vector2 _kickbackDir = Vector2.Zero;
-    private float _kickbackLength;
+    private float _kickbackLength = 0.0f;
 
+    private Vector2 _offset = Vector2.Zero;
+    
     /// <summary>
     /// The current offset calculated by these effects. Should be applied to any camera using them.
     /// </summary>
-    public Vector2 Offset { get; private set; } = Vector2.Zero;
+    public static Vector2 Offset => Instance._offset;
 
+    private float _trauma = 0.0f;
+    
     /// <summary>
     /// The trauma value used for screenshake. Add on for an impact effect.
     /// </summary>
-    public float Trauma { get; set; }
+    public static float Trauma
+    {
+        get => Instance._trauma;
+        set
+        {
+            Instance._trauma = Mathf.Clamp(value, 0.0f, 1.0f);
+        }
+    }
 
     private float _time = 0;
 
@@ -47,13 +58,13 @@ public class CameraEffects : Node
         base._Process(delta);
 
         _time += delta;
-        Trauma = Mathf.Clamp(Trauma - delta, 0, 1);
+        _trauma = Mathf.Clamp(Trauma - delta, 0, 1);
         _kickbackLength = Mathf.Clamp(_kickbackLength - delta * 64.0f, 0, Mathf.Inf);
 
-        _screenshakeOffet.x = 128.0f * Trauma * Trauma * _noise.GetNoise1d(_time);
-        _screenshakeOffet.y = 128.0f * Trauma * Trauma * _noise.GetNoise1d(_time);
+        _screenshakeOffet.x = 128.0f * _trauma * _trauma * _noise.GetNoise1d(_time);
+        _screenshakeOffet.y = 128.0f * _trauma * _trauma * _noise.GetNoise1d(_time);
 
-        Offset = _screenshakeOffet + _kickbackDir * _kickbackLength;
+        _offset = _screenshakeOffet + _kickbackDir * _kickbackLength;
 
         if (OS.GetTicksMsec() > _hitstopEndTime)
             Engine.TimeScale = 1.0f;
@@ -64,10 +75,10 @@ public class CameraEffects : Node
     /// </summary>
     /// <param name="dir">The direction to kick back in.</param>
     /// <param name="strength">The magnitude of the kickback.</param>
-    public void Kickback(Vector2 dir, float strength)
+    public static void Kickback(Vector2 dir, float strength)
     {
-        _kickbackDir = dir;
-        _kickbackLength = strength;
+        Instance._kickbackDir = dir;
+        Instance._kickbackLength = strength;
     }
 
     /// <summary>
@@ -75,9 +86,9 @@ public class CameraEffects : Node
     /// This works by changing Engine.TimeScale.
     /// </summary>
     /// <param name="duration">The duration to freeze for</param>
-    public void Hitstop(float duration)
+    public static void Hitstop(float duration)
     {
         Engine.TimeScale = 0.0f;
-        _hitstopEndTime = OS.GetTicksMsec() + duration * 1000;
+        Instance._hitstopEndTime = OS.GetTicksMsec() + duration * 1000;
     }
 }
