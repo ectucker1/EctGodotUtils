@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://util/transition/transition.tscn" type="PackedScene" id=1]
+
+[node name="TransitionAutoload" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="Transition" parent="CanvasLayer" instance=ExtResource( 1 )]
