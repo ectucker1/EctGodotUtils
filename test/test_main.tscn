@@ -1,6 +1,66 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://test/TestMain.cs" type="Script" id=1]
+[ext_resource path="res://test/TestSceneButton.cs" type="Script" id=1]
 
-[node name="Test" type="Node2D"]
+[node name="TestMain" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchor_bottom = 1.0
+margin_right = 12.0
+
+[node name="SceneButton1" type="Button" parent="VBox"]
+margin_right = 419.0
+margin_bottom = 20.0
+text = "res://test/async_routine/async_routine_test.tscn"
+script = ExtResource( 1 )
+
+[node name="SceneButton2" type="Button" parent="VBox"]
+margin_top = 24.0
+margin_right = 419.0
+margin_bottom = 44.0
+text = "res://test/audio/audio_test.tscn"
+script = ExtResource( 1 )
+
+[node name="SceneButton3" type="Button" parent="VBox"]
+margin_top = 48.0
+margin_right = 419.0
+margin_bottom = 68.0
+text = "res://test/camera/camera_test.tscn"
+script = ExtResource( 1 )
+
+[node name="SceneButton4" type="Button" parent="VBox"]
+margin_top = 72.0
+margin_right = 419.0
+margin_bottom = 92.0
+text = "res://test/live_values/live_values_test.tscn"
+script = ExtResource( 1 )
+
+[node name="SceneButton5" type="Button" parent="VBox"]
+margin_top = 96.0
+margin_right = 419.0
+margin_bottom = 116.0
+text = "res://test/overlay/overlay_test.tscn"
+script = ExtResource( 1 )
+
+[node name="SceneButton6" type="Button" parent="VBox"]
+margin_top = 120.0
+margin_right = 419.0
+margin_bottom = 140.0
+text = "res://test/procedural_animation/procedural_animation_test.tscn"
+script = ExtResource( 1 )
+
+[node name="SceneButton7" type="Button" parent="VBox"]
+margin_top = 144.0
+margin_right = 419.0
+margin_bottom = 164.0
+text = "res://test/render_targets/render_target_test.tscn"
+script = ExtResource( 1 )
+
+[node name="SceneButton8" type="Button" parent="VBox"]
+margin_top = 168.0
+margin_right = 419.0
+margin_bottom = 188.0
+text = "res://test/tracking_areas/tracking_areas_test.tscn"
 script = ExtResource( 1 )

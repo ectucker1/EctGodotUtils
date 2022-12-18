@@ -21,6 +21,7 @@ DebugAutoload="*res://base/debug_autoload.tscn"
 CameraEffects="*res://util/camera/CameraEffects.cs"
 AudioSettings="*res://util/audio/AudioSettings.cs"
 PauseAutoload="*res://base/pause_autoload.tscn"
+TransitionAutoload="*res://base/transition_autoload.tscn"
 
 [display]
 
