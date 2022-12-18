@@ -1,0 +1,119 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://util/animation/procedural/VerletChain.cs" type="Script" id=1]
+[ext_resource path="res://util/animation/procedural/BreathingAnim.cs" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Loop"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 102, 4 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[node name="ProceduralAnimationTest" type="Node2D"]
+position = Vector2( 774, 394 )
+
+[node name="Character" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite" parent="Character"]
+position = Vector2( 2, 54 )
+scale = Vector2( 0.5, 1 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Hair" type="Node2D" parent="Character"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+_gravity = 90.0
+_dampening = 0.8
+
+[node name="HairBit1" type="Sprite" parent="Character/Hair"]
+position = Vector2( -31, -21 )
+scale = Vector2( 0.3125, 0.296875 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HairBit2" type="Sprite" parent="Character/Hair"]
+position = Vector2( -37, -7 )
+scale = Vector2( 0.3125, 0.296875 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HairBit3" type="Sprite" parent="Character/Hair"]
+position = Vector2( -43, 6 )
+scale = Vector2( 0.3125, 0.296875 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HairBit4" type="Sprite" parent="Character/Hair"]
+position = Vector2( -42, 19 )
+scale = Vector2( 0.3125, 0.296875 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HairBit5" type="Sprite" parent="Character/Hair"]
+position = Vector2( -45, 34 )
+scale = Vector2( 0.3125, 0.296875 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Head" type="Sprite" parent="Character"]
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node" type="Node" parent="Character"]
+script = ExtResource( 2 )
+_searchRoot = NodePath("..")
+_breathingSearches = PoolStringArray( "Body", "Hair", "Head" )
+_breathingTimes = PoolRealArray( 1, 0, 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Loop"
+anims/Loop = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.2, 0.2 )
