@@ -1,17 +1,112 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://test/audio/test_music.ogg" type="AudioStream" id=1]
 [ext_resource path="res://test/audio/step1.ogg" type="AudioStream" id=2]
-[ext_resource path="res://test/audio/AudioTest.cs" type="Script" id=3]
+[ext_resource path="res://test/audio/AudioTestButton.cs" type="Script" id=3]
+[ext_resource path="res://util/audio/AudioStreamRandomizer.cs" type="Script" id=4]
+[ext_resource path="res://test/audio/step2.ogg" type="AudioStream" id=5]
+[ext_resource path="res://util/audio/AudioStreamPitchSequence.cs" type="Script" id=6]
+[ext_resource path="res://test/audio/coins.ogg" type="AudioStream" id=7]
+[ext_resource path="res://util/audio/AudioStreamSequence.cs" type="Script" id=8]
+[ext_resource path="res://test/audio/book1.ogg" type="AudioStream" id=9]
+[ext_resource path="res://test/audio/book2.ogg" type="AudioStream" id=10]
+[ext_resource path="res://test/audio/book3.ogg" type="AudioStream" id=11]
+[ext_resource path="res://test/audio/1.ogg" type="AudioStream" id=12]
+[ext_resource path="res://test/audio/3.ogg" type="AudioStream" id=13]
+[ext_resource path="res://test/audio/2.ogg" type="AudioStream" id=14]
 
-[node name="AudioTest" type="Node2D"]
+[node name="AudioTest" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="List" type="VBoxContainer" parent="."]
+anchor_bottom = 1.0
+margin_right = 12.0
+rect_min_size = Vector2( 200, 0 )
+alignment = 1
+
+[node name="StepRandom" type="Button" parent="List"]
+margin_top = 494.0
+margin_right = 200.0
+margin_bottom = 514.0
+text = "Step Random"
 script = ExtResource( 3 )
+
+[node name="Randomizer" type="Node" parent="List/StepRandom"]
+script = ExtResource( 4 )
+PitchScaleRange = 0.2
+VolumeDbRange = 0.1
+
+[node name="Step1" type="AudioStreamPlayer" parent="List/StepRandom/Randomizer"]
+stream = ExtResource( 2 )
+bus = "Effects"
+
+[node name="Step2" type="AudioStreamPlayer" parent="List/StepRandom/Randomizer"]
+stream = ExtResource( 5 )
+bus = "Effects"
+
+[node name="CoinPitched" type="Button" parent="List"]
+margin_top = 518.0
+margin_right = 200.0
+margin_bottom = 538.0
+text = "Coin Pitch"
+script = ExtResource( 3 )
+
+[node name="PitchedSequence" type="Node" parent="List/CoinPitched"]
+script = ExtResource( 6 )
+PitchScaleDelta = 0.05
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="List/CoinPitched/PitchedSequence"]
+stream = ExtResource( 7 )
+
+[node name="BookSequence" type="Button" parent="List"]
+margin_top = 542.0
+margin_right = 200.0
+margin_bottom = 562.0
+text = "Book Sequence"
+script = ExtResource( 3 )
+
+[node name="Sequence" type="Node" parent="List/BookSequence"]
+script = ExtResource( 8 )
+ResetCooldown = 3.0
+
+[node name="Book1" type="AudioStreamPlayer" parent="List/BookSequence/Sequence"]
+stream = ExtResource( 9 )
+bus = "Effects"
+
+[node name="Book2" type="AudioStreamPlayer" parent="List/BookSequence/Sequence"]
+stream = ExtResource( 10 )
+bus = "Effects"
+
+[node name="Book3" type="AudioStreamPlayer" parent="List/BookSequence/Sequence"]
+stream = ExtResource( 11 )
+bus = "Effects"
+
+[node name="VoiceoverSequence" type="Button" parent="List"]
+margin_top = 566.0
+margin_right = 200.0
+margin_bottom = 586.0
+text = "Voiceover Repat Sequence"
+script = ExtResource( 3 )
+
+[node name="Sequence" type="Node" parent="List/VoiceoverSequence"]
+script = ExtResource( 8 )
+ResetCooldown = 3.0
+Repeat = true
+
+[node name="One" type="AudioStreamPlayer" parent="List/VoiceoverSequence/Sequence"]
+stream = ExtResource( 12 )
+bus = "Effects"
+
+[node name="Two" type="AudioStreamPlayer" parent="List/VoiceoverSequence/Sequence"]
+stream = ExtResource( 14 )
+bus = "Effects"
+
+[node name="Three" type="AudioStreamPlayer" parent="List/VoiceoverSequence/Sequence"]
+stream = ExtResource( 13 )
+bus = "Effects"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 autoplay = true
 bus = "Music"
-
-[node name="Sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
-bus = "Effects"
