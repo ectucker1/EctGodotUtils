@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://test/audio/test_music.ogg" type="AudioStream" id=1]
 [ext_resource path="res://test/audio/step1.ogg" type="AudioStream" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://test/audio/1.ogg" type="AudioStream" id=12]
 [ext_resource path="res://test/audio/3.ogg" type="AudioStream" id=13]
 [ext_resource path="res://test/audio/2.ogg" type="AudioStream" id=14]
+[ext_resource path="res://base/button_sounds.tscn" type="PackedScene" id=15]
 
 [node name="AudioTest" type="Control"]
 anchor_right = 1.0
@@ -45,6 +46,8 @@ bus = "Effects"
 stream = ExtResource( 5 )
 bus = "Effects"
 
+[node name="ButtonSounds" parent="List/StepRandom" instance=ExtResource( 15 )]
+
 [node name="CoinPitched" type="Button" parent="List"]
 margin_top = 518.0
 margin_right = 200.0
@@ -58,6 +61,8 @@ PitchScaleDelta = 0.05
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="List/CoinPitched/PitchedSequence"]
 stream = ExtResource( 7 )
+
+[node name="ButtonSounds" parent="List/CoinPitched" instance=ExtResource( 15 )]
 
 [node name="BookSequence" type="Button" parent="List"]
 margin_top = 542.0
@@ -81,6 +86,8 @@ bus = "Effects"
 [node name="Book3" type="AudioStreamPlayer" parent="List/BookSequence/Sequence"]
 stream = ExtResource( 11 )
 bus = "Effects"
+
+[node name="ButtonSounds" parent="List/BookSequence" instance=ExtResource( 15 )]
 
 [node name="VoiceoverSequence" type="Button" parent="List"]
 margin_top = 566.0
@@ -106,7 +113,8 @@ bus = "Effects"
 stream = ExtResource( 13 )
 bus = "Effects"
 
+[node name="ButtonSounds" parent="List/VoiceoverSequence" instance=ExtResource( 15 )]
+
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
-autoplay = true
 bus = "Music"
