@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://base/hover.ogg" type="AudioStream" id=1]
+[ext_resource path="res://base/press.ogg" type="AudioStream" id=2]
+[ext_resource path="res://util/audio/AudioStreamPitchSequence.cs" type="Script" id=3]
+[ext_resource path="res://util/audio/ButtonSounds.cs" type="Script" id=4]
+
+[node name="ButtonSounds" type="Node"]
+script = ExtResource( 4 )
+
+[node name="Hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Effects"
+
+[node name="Press" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="Press" type="AudioStreamPlayer" parent="Press"]
+stream = ExtResource( 2 )
+bus = "Effects"
