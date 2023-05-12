@@ -2,7 +2,8 @@
 
 This repository contains a lot of common utilities I tend to rewrite for Godot game projects.
 They are all written in C# and thus exclusive to the Mono distribution of Godot.
-They are currently tested on Godot 3.5.1, but should be compatible with newer Godot 3 versions.
+They are currently in the process of being converted to Godot 4.0,
+see the [3.x](https://github.com/ectucker1/EctGodotUtils/tree/3.x) branch for the 3.0 version.
 
 Some examples of utilities included (not comprehensive):
 - State machines
