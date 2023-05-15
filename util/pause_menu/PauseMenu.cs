@@ -7,7 +7,7 @@ using System;
 /// 
 /// Should be disabled on other menus.
 /// </summary>
-public class PauseMenu : Control
+public partial class PauseMenu : Control
 {
     private static PauseMenu _instance;
 
@@ -32,9 +32,9 @@ public class PauseMenu : Control
     private Button _resumeButton;
     private Button _exitButton;
 
-    private Range _mainVolumeRange;
-    private Range _effectsVolumeRange;
-    private Range _musicVolumeRange;
+    private Godot.Range _mainVolumeRange;
+    private Godot.Range _effectsVolumeRange;
+    private Godot.Range _musicVolumeRange;
 
     private AnimationPlayer _animPlayer;
     
@@ -44,28 +44,28 @@ public class PauseMenu : Control
 
         _instance = this;
 
-        _resumeButton = FindNode("Resume") as Button;
-        _resumeButton.Connect(SignalNames.BUTTON_PRESSED, this, nameof(ToggleShown));
+        _resumeButton = FindChild("Resume") as Button;
+        _resumeButton.Connect(SignalNames.BUTTON_PRESSED, new Callable(this, nameof(ToggleShown)));
         
-        _exitButton = FindNode("Exit") as Button;
-        _exitButton.Connect(SignalNames.BUTTON_PRESSED, this, nameof(Exit));
+        _exitButton = FindChild("Exit") as Button;
+        _exitButton.Connect(SignalNames.BUTTON_PRESSED, new Callable(this, nameof(Exit)));
         if (OS.GetName() == "HTML5")
         {
             _exitButton.Visible = false;
         }
 
         _animPlayer = this.FindChild<AnimationPlayer>();
-        _animPlayer.Connect(SignalNames.ANIMATION_FINISHED, this, nameof(_AnimationFinished));
+        _animPlayer.Connect(SignalNames.ANIMATION_FINISHED, new Callable(this, nameof(_AnimationFinished)));
 
-        _mainVolumeRange = FindNode("MainSlider") as Range;
+        _mainVolumeRange = FindChild("MainSlider") as Godot.Range;
         _mainVolumeRange.Value = AudioSettings.MainVolume;
-        _mainVolumeRange.Connect(SignalNames.RANGE_VALUE_CHANGED, this, nameof(UpdateVolumes));
-        _effectsVolumeRange = FindNode("EffectsSlider") as Range;
+        _mainVolumeRange.Connect(SignalNames.RANGE_VALUE_CHANGED, new Callable(this, nameof(UpdateVolumes)));
+        _effectsVolumeRange = FindChild("EffectsSlider") as Godot.Range;
         _effectsVolumeRange.Value = AudioSettings.EffectsVolume;
-        _effectsVolumeRange.Connect(SignalNames.RANGE_VALUE_CHANGED, this, nameof(UpdateVolumes));
-        _musicVolumeRange = FindNode("MusicSlider") as Range;
+        _effectsVolumeRange.Connect(SignalNames.RANGE_VALUE_CHANGED, new Callable(this, nameof(UpdateVolumes)));
+        _musicVolumeRange = FindChild("MusicSlider") as Godot.Range;
         _musicVolumeRange.Value = AudioSettings.MusicVolume;
-        _musicVolumeRange.Connect(SignalNames.RANGE_VALUE_CHANGED, this, nameof(UpdateVolumes));
+        _musicVolumeRange.Connect(SignalNames.RANGE_VALUE_CHANGED, new Callable(this, nameof(UpdateVolumes)));
     }
 
     public override void _Input(InputEvent inputEvent)
@@ -78,7 +78,7 @@ public class PauseMenu : Control
         }
         else if (inputEvent.IsActionPressed("fullscreen"))
         {
-            OS.WindowFullscreen = !OS.WindowFullscreen;
+            DisplayServer.WindowSetMode(DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen ? DisplayServer.WindowMode.Windowed : DisplayServer.WindowMode.Fullscreen);
         }
     }
 

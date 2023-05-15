@@ -1,13 +1,14 @@
-﻿using Godot;
+using System;
+using Godot;
 
 /// <summary>
 /// The client node that applies live values from JSON.
 /// </summary>
-public class LiveValuesClient : Node
+public partial class LiveValuesClient : Node
 {
     private LiveValuesModel _model;
 
-    private float _lastLoad = Mathf.Inf;
+    private ulong _lastLoad = UInt64.MinValue;
     
     public override void _Ready()
     {
@@ -15,15 +16,15 @@ public class LiveValuesClient : Node
         _model = new LiveValuesModel();
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        
-        _lastLoad += delta;
-        if (_lastLoad > 1.0f)
+
+        var modtime = _model.GetModtime();
+        if (_lastLoad < modtime)
         {
             _model.LoadJSON(false);
-            _lastLoad = 0;
+            _lastLoad = modtime;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -6,7 +6,7 @@ using Godot;
 /// A "pipeline" of functions used to calculate some kind of statistic, e.g. Speed, Max Health, etc.
 /// Each effect which changes a stat can be added to the list here.
 /// </summary>
-public class StatPipeline : Godot.Object
+public partial class StatPipeline : GodotObject
 {
     private class StatStep
     {
@@ -27,7 +27,7 @@ public class StatPipeline : Godot.Object
     /// This may mean it has a new value.
     /// </summary>
     [Signal]
-    public delegate void Modified();
+    public delegate void ModifiedEventHandler();
     
     /// <summary>
     /// Adds a step to the stat pipeline.
@@ -38,7 +38,7 @@ public class StatPipeline : Godot.Object
     {
         _steps.Add(new StatStep(source, modifier));
         
-        EmitSignal(nameof(Modified));
+        EmitSignal(SignalName.Modified);
     }
 
     /// <summary>
@@ -58,7 +58,7 @@ public class StatPipeline : Godot.Object
             _steps.Remove(step);
         }
         
-        EmitSignal(nameof(Modified));
+        EmitSignal(SignalName.Modified);
     }
 
     /// <summary>

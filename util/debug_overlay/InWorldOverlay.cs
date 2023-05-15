@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class InWorldOverlay : Node2D
+public partial class InWorldOverlay : Node2D
 {
     public static List<IDebugDrawable> Drawables = new List<IDebugDrawable>();
     public static InWorldOverlay Instance;
@@ -25,7 +25,7 @@ public class InWorldOverlay : Node2D
         Drawables.Clear();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
         

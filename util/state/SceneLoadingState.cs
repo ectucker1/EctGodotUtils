@@ -1,10 +1,10 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 /// A state subclass that also instances a scene as a child.
 /// </summary>
 /// <typeparam name="T">The type of object this state applies to</typeparam>
-public abstract class SceneLoadingState<T> : StateNode<T>
+public abstract partial class SceneLoadingState<T> : StateNode<T>
 {
     /// <summary>
     /// The scene to load, should be overriden by state implementations.
@@ -14,6 +14,6 @@ public abstract class SceneLoadingState<T> : StateNode<T>
     protected SceneLoadingState(T owner) : base(owner)
     {
         var scene = GD.Load<PackedScene>(ScenePath);
-        AddChild(scene.Instance());
+        AddChild(scene.Instantiate());
     }
 }

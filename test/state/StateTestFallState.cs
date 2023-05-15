@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class StateTestFallState : StateNode<StateTestPlayer>
+public partial class StateTestFallState : StateNode<StateTestPlayer>
 {
     public StateTestFallState(StateTestPlayer player) : base(player)
     {
@@ -16,7 +16,7 @@ public class StateTestFallState : StateNode<StateTestPlayer>
     {
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
      

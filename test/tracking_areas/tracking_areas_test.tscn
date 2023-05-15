@@ -1,144 +1,138 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=3 uid="uid://bvofbo5ouus3q"]
 
-[ext_resource path="res://test/tracking_areas/TestTypeTrackingArea.cs" type="Script" id=1]
-[ext_resource path="res://test/tracking_areas/TestType.cs" type="Script" id=2]
+[ext_resource type="Script" path="res://test/tracking_areas/TestTypeTrackingArea.cs" id="1"]
+[ext_resource type="Script" path="res://test/tracking_areas/TestTypeBody.cs" id="2_temo1"]
+[ext_resource type="Script" path="res://test/tracking_areas/TestTypeArea.cs" id="3_y2go3"]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id="1"]
 radius = 308.185
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id="2"]
 radius = 50.0
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id="3"]
 radius = 50.0
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id="4"]
 radius = 50.0
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id="5"]
 resource_name = "Loop"
 length = 3.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("OtherArea:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 2.9 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.5, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Vector2( 1369, 149 ), Vector2( 1131, 354 ), Vector2( 1369, 149 ) ]
+"values": [Vector2(1369, 149), Vector2(1131, 354), Vector2(1369, 149)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("OtherBody:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1, 2.9 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 1, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Vector2( 412, 547 ), Vector2( 701, 529 ), Vector2( 412, 547 ) ]
+"values": [Vector2(412, 547), Vector2(701, 529), Vector2(412, 547)]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("OtherSubclass:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1.5, 2.9 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 1.5, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Vector2( 1368, 936 ), Vector2( 1087, 683 ), Vector2( 1368, 936 ) ]
+"values": [Vector2(1368, 936), Vector2(1087, 683), Vector2(1368, 936)]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id="6"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("OtherArea:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 1369, 149 ) ]
+"values": [Vector2(1369, 149)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("OtherBody:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 412, 547 ) ]
+"values": [Vector2(412, 547)]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("OtherSubclass:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 1368, 936 ) ]
+"values": [Vector2(1368, 936)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_plxk5"]
+_data = {
+"Loop": SubResource("5"),
+"RESET": SubResource("6")
 }
 
 [node name="TrackingAreasTest" type="Node2D"]
 
 [node name="TrackingArea" type="Area2D" parent="."]
-position = Vector2( 958, 500 )
-script = ExtResource( 1 )
+position = Vector2(958, 500)
+script = ExtResource("1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrackingArea"]
-shape = SubResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+shape = SubResource("1")
 
 [node name="OtherArea" type="Area2D" parent="."]
-position = Vector2( 1369, 149 )
-script = ExtResource( 2 )
+position = Vector2(1369, 149)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OtherArea"]
-shape = SubResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
+shape = SubResource("2")
 
-[node name="OtherBody" type="KinematicBody2D" parent="."]
-position = Vector2( 412, 547 )
-motion/sync_to_physics = true
-script = ExtResource( 2 )
+[node name="OtherBody" type="CharacterBody2D" parent="."]
+position = Vector2(412, 547)
+script = ExtResource("2_temo1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OtherBody"]
-shape = SubResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
+shape = SubResource("3")
 
 [node name="OtherSubclass" type="Area2D" parent="."]
-position = Vector2( 1368, 936 )
-script = ExtResource( 2 )
+position = Vector2(1368, 936)
+script = ExtResource("3_y2go3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OtherSubclass"]
-shape = SubResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
+shape = SubResource("4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Loop"
-anims/Loop = SubResource( 5 )
-anims/RESET = SubResource( 6 )
+libraries = {
+"": SubResource("AnimationLibrary_plxk5")
+}

@@ -7,7 +7,7 @@ using Array = Godot.Collections.Array;
 /// The plugin used to show live values in the editor.
 /// </summary>
 [Tool]
-public class LiveValuesPlugin : EditorPlugin
+public partial class LiveValuesPlugin : EditorPlugin
 {
     private const string MAIN_PANEL_PATH = "res://addons/live_values/live_values_main.tscn";
     private const string SWITCH_PATH = "res://addons/live_values/switch_item.tscn";
@@ -21,27 +21,27 @@ public class LiveValuesPlugin : EditorPlugin
 
     private string _lastCategory = "";
 
-    private float _lastSave = Mathf.Inf;
+    private long _framesSinceChange = -1;
     
     public override void _EnterTree()
     {
-        if (Engine.EditorHint)
+        if (Engine.IsEditorHint())
         {
             _model = new LiveValuesModel();
             var mainPanel = GD.Load<PackedScene>(MAIN_PANEL_PATH);
-            _mainScreen = mainPanel.Instance<Control>();
-            GetEditorInterface().GetEditorViewport().AddChild(_mainScreen);
+            _mainScreen = mainPanel.Instantiate<Control>();
+            GetEditorInterface().GetEditorMainScreen().AddChild(_mainScreen);
 
-            _categoryTree = _mainScreen.FindNode("Categories") as Tree;
-            _valueContainer = _mainScreen.FindNode("Values") as Control;
+            _categoryTree = _mainScreen.FindChild("Categories") as Tree;
+            _valueContainer = _mainScreen.FindChild("Values") as Control;
 
             _categoryTree.CreateItem();
             _categoryTree.HideRoot = true;
-            _categoryTree.Connect("item_selected", this, nameof(_ItemSelected));
+            _categoryTree.Connect("item_selected", new Callable(this, nameof(_ItemSelected)));
 
             Init(_model);
 
-            MakeVisible(false);
+            _MakeVisible(false);
         }
     }
     
@@ -86,7 +86,7 @@ public class LiveValuesPlugin : EditorPlugin
         switch (value.Type)
         {
             case LVType.RANGE:
-                Control sliderNumbox = GD.Load<PackedScene>(SLIDER_NUMBOX_PATH).Instance<Control>();
+                Control sliderNumbox = GD.Load<PackedScene>(SLIDER_NUMBOX_PATH).Instantiate<Control>();
                 sliderNumbox.Name = value.VariableName;
                 Slider _slider = sliderNumbox.FindChild<Slider>();
                 SpinBox _numbox = sliderNumbox.FindChild<SpinBox>();
@@ -98,22 +98,24 @@ public class LiveValuesPlugin : EditorPlugin
                 _numbox.MaxValue = value.Max;
                 _numbox.Step = 0.000001f;
                 _numbox.Value = value.FloatVal;
-                _numbox.Connect(SignalNames.RANGE_VALUE_CHANGED, this, nameof(_ValueChanged), new Array() {_slider});
-                _slider.Connect(SignalNames.RANGE_VALUE_CHANGED, this, nameof(_ValueChanged), new Array() {_numbox});
+                _numbox.ValueChanged += (double value) => _ValueChanged(value, _slider);
+                _slider.ValueChanged += (double value) => _ValueChanged(value, _numbox);
                 _valueContainer.AddChild(sliderNumbox);
                 break;
             case LVType.SWITCH:
-                Button switchButton = GD.Load<PackedScene>(SWITCH_PATH).Instance<Button>();
+                Button switchButton = GD.Load<PackedScene>(SWITCH_PATH).Instantiate<Button>();
                 switchButton.Name = value.VariableName;
-                switchButton.Pressed = value.BoolVal;
+                switchButton.ButtonPressed = value.BoolVal;
+                switchButton.Pressed += () => _framesSinceChange = 0;
                 _valueContainer.AddChild(switchButton);
                 break;
         }
     }
 
-    private void _ValueChanged(float value, Range other)
+    private void _ValueChanged(double value, Godot.Range other)
     {
         other.Value = value;
+        _framesSinceChange = 0;
     }
 
     private void _ItemSelected()
@@ -133,7 +135,7 @@ public class LiveValuesPlugin : EditorPlugin
                     if (node.Name == val.VariableName)
                     {
                         if (node is Button button)
-                            val.BoolVal = button.Pressed;
+                            val.BoolVal = button.ButtonPressed;
                         if (node.FindChild<SpinBox>() is SpinBox spinBox)
                             val.FloatVal = (float) spinBox.Value;
                     }
@@ -154,7 +156,7 @@ public class LiveValuesPlugin : EditorPlugin
                     if (node.Name == val.VariableName)
                     {
                         if (node is Button button)
-                            button.Pressed = val.BoolVal;
+                            button.ButtonPressed = val.BoolVal;
                         if (node.FindChild<SpinBox>() is SpinBox spinBox)
                             spinBox.Value = val.FloatVal;
                     }
@@ -163,14 +165,15 @@ public class LiveValuesPlugin : EditorPlugin
         }
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
 
-        if (Engine.EditorHint)
+        if (Engine.IsEditorHint())
         {
-            _lastSave += delta;
-            if (_lastSave > 1.0f)
+            if (_framesSinceChange >= 0)
+                _framesSinceChange += 1;
+            if (_framesSinceChange >= 3)
             {
                 try
                 {
@@ -178,7 +181,7 @@ public class LiveValuesPlugin : EditorPlugin
                     _model.LoadJSON(true);
                     _model.SaveJSON();
                     CopyModelValuesToGUI();
-                    _lastSave = 0;
+                    _framesSinceChange = -1;
                 }
                 catch (Exception e)
                 {
@@ -197,25 +200,25 @@ public class LiveValuesPlugin : EditorPlugin
             _mainScreen.QueueFree();
     }
 
-    public override bool HasMainScreen()
+    public override bool _HasMainScreen()
     {
         return true;
     }
-
-    public override void MakeVisible(bool visible)
+    
+    public override void _MakeVisible(bool visible)
     {
         if (_mainScreen != null)
             _mainScreen.Visible = visible;
     }
 
-    public override string GetPluginName()
+    public override string _GetPluginName()
     {
         return "LiveValues";
     }
 
-    public override Texture GetPluginIcon()
+    public override Texture2D _GetPluginIcon()
     {
-        return GetEditorInterface().GetBaseControl().GetIcon("ResourcePreloader", "EditorIcons");
+        return GetEditorInterface().GetBaseControl().GetThemeIcon("ResourcePreloader", "EditorIcons");
     }
 }
 #endif

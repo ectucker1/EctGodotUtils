@@ -1,48 +1,37 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://s31l7mc7xn8g"]
 
-[ext_resource path="res://util/render_targets/DrawToTarget.cs" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://util/render_targets/RegisterRenderTarget.cs" type="Script" id=3]
+[ext_resource type="Script" path="res://util/render_targets/DrawToTarget.cs" id="1"]
+[ext_resource type="Texture2D" uid="uid://bmgfxim7pxr3u" path="res://icon.png" id="2"]
+[ext_resource type="Script" path="res://util/render_targets/RegisterRenderTarget.cs" id="3"]
 
-[sub_resource type="ViewportTexture" id=1]
+[sub_resource type="ViewportTexture" id="1"]
 viewport_path = NodePath("TestViewport")
 
 [node name="RenderTargetTest" type="Node2D"]
 
-[node name="TestViewport" type="Viewport" parent="."]
+[node name="TestViewport" type="SubViewport" parent="."]
 transparent_bg = true
-render_target_v_flip = true
-script = ExtResource( 3 )
+script = ExtResource("3")
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2")
 
-[node name="Glow" type="Sprite" parent="Sprite"]
-texture = ExtResource( 2 )
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Glow" type="Sprite2D" parent="Sprite2D"]
+texture = ExtResource("2")
+script = ExtResource("1")
 _target = "TestViewport"
 
-[node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( 143, 2 )
-texture = ExtResource( 2 )
+[node name="Sprite2" type="Sprite2D" parent="."]
+position = Vector2(143, 2)
+texture = ExtResource("2")
 
-[node name="Glow" type="Sprite" parent="Sprite2"]
-texture = ExtResource( 2 )
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Glow" type="Sprite2D" parent="Sprite2"]
+texture = ExtResource("2")
+script = ExtResource("1")
 _target = "TestViewport"
 
-[node name="ViewportDisplay" type="Sprite" parent="."]
-modulate = Color( 0.909804, 0.0901961, 0.0901961, 0.215686 )
-texture = SubResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="ViewportDisplay" type="Sprite2D" parent="."]
+modulate = Color(0.909804, 0.0901961, 0.0901961, 0.215686)
+texture = SubResource("1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-current = true

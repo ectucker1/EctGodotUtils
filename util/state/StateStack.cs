@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 /// <summary>
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 /// Will always be in one and only one active state.
 /// </summary>
 /// <typeparam name="T">The type of object this state machine applies to</typeparam>
-public class StateStack<T> : StateMachine<T>
+public partial class StateStack<T> : StateMachine<T>
 {
     /// <summary>
     /// Gets the currently active state in the stack.

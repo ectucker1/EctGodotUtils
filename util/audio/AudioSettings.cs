@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using Godot;
 
-public class AudioSettings : Node
+public partial class AudioSettings : Node
 {
     private const string FILE_PATH = "user://settings.ini";
     private const string SECTION = "audio";
@@ -19,7 +19,7 @@ public class AudioSettings : Node
         set
         {
             _instance._mainVolume = Mathf.Clamp(value, 0.0f, 100.0f);
-            AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Master"), GD.Linear2Db(_instance._mainVolume / 100f));
+            AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Master"), Mathf.LinearToDb(_instance._mainVolume / 100f));
             _instance._lastUpdated = 0.0f;
             _instance._unsaved = true;
         }
@@ -32,7 +32,7 @@ public class AudioSettings : Node
         set
         {
             _instance._effectsVolume = Mathf.Clamp(value, 0.0f, 100.0f);
-            AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Effects"), GD.Linear2Db(_instance._effectsVolume / 100f));
+            AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Effects"), Mathf.LinearToDb(_instance._effectsVolume / 100f));
             _instance._lastUpdated = 0.0f;
             _instance._unsaved = true;
         }
@@ -45,14 +45,14 @@ public class AudioSettings : Node
         set
         {
             _instance._musicVolume = Mathf.Clamp(value, 0.0f, 100.0f);
-            AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), GD.Linear2Db(_instance._musicVolume / 100f));
+            AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), Mathf.LinearToDb(_instance._musicVolume / 100f));
             _instance._lastUpdated = 0.0f;
             _instance._unsaved = true;
         }
     }
 
     private bool _unsaved = false;
-    private float _lastUpdated = Mathf.Inf;
+    private double _lastUpdated = Mathf.Inf;
 
     public override void _Ready()
     {
@@ -62,7 +62,7 @@ public class AudioSettings : Node
         Load();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 /// An optional type, which may or may not contain a value.
 /// </summary>
 /// <typeparam name="T">The type potentially stored in this optional.</typeparam>
-public class Optional<T> : IEnumerable<T>
+public partial class Optional<T> : IEnumerable<T>
 {
     private T _value;
     private bool _hasValue = false;

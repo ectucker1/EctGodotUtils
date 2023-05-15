@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
-public class MultiDictionary<TKey, TVal>
+public partial class MultiDictionary<TKey, TVal>
 {
     Dictionary<TKey, List<TVal>> _dictionary = new Dictionary<TKey, List<TVal>>();
     

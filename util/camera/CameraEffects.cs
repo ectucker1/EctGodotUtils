@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 /// Provides common camera effects, such as screenshake and hitstop.
 /// </summary>
-public class CameraEffects : Node
+public partial class CameraEffects : Node
 {
     /// <summary>
     /// The singleton instance of these camera effects.
@@ -35,9 +35,9 @@ public class CameraEffects : Node
         }
     }
 
-    private float _time = 0;
+    private double _time = 0;
 
-    private OpenSimplexNoise _noise;
+    private FastNoiseLite _noise;
 
     private float _hitstopEndTime = 0;
 
@@ -47,26 +47,24 @@ public class CameraEffects : Node
 
         Instance = this;
 
-        _noise = new OpenSimplexNoise();
-        _noise.Octaves = 4;
-        _noise.Period = 5.0f;
-        _noise.Persistence = 0.8f;
+        _noise = new FastNoiseLite();
+        _noise.FractalOctaves = 4;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
         _time += delta;
-        _trauma = Mathf.Clamp(Trauma - delta, 0, 1);
-        _kickbackLength = Mathf.Clamp(_kickbackLength - delta * 64.0f, 0, Mathf.Inf);
+        _trauma = Mathf.Clamp((float) (Trauma - delta), 0, 1);
+        _kickbackLength = Mathf.Clamp((float) (_kickbackLength - delta * 64.0f), 0, Mathf.Inf);
 
-        _screenshakeOffet.x = 128.0f * _trauma * _trauma * _noise.GetNoise1d(_time);
-        _screenshakeOffet.y = 128.0f * _trauma * _trauma * _noise.GetNoise1d(_time);
+        _screenshakeOffet.X = 128.0f * _trauma * _trauma * _noise.GetNoise1D((float) _time);
+        _screenshakeOffet.Y = 128.0f * _trauma * _trauma * _noise.GetNoise1D((float) _time);
 
         _offset = _screenshakeOffet + _kickbackDir * _kickbackLength;
 
-        if (OS.GetTicksMsec() > _hitstopEndTime)
+        if (Time.GetTicksMsec() > _hitstopEndTime)
             Engine.TimeScale = 1.0f;
     }
 
@@ -89,6 +87,6 @@ public class CameraEffects : Node
     public static void Hitstop(float duration)
     {
         Engine.TimeScale = 0.0f;
-        Instance._hitstopEndTime = OS.GetTicksMsec() + duration * 1000;
+        Instance._hitstopEndTime = Time.GetTicksMsec() + duration * 1000;
     }
 }

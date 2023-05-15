@@ -1,25 +1,13 @@
-[gd_scene format=2]
+[gd_scene format=3 uid="uid://buk6obug5nj8a"]
 
 [node name="SliderNumbox" type="HBoxContainer"]
-margin_right = 404.0
-margin_bottom = 24.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_right = 404.0
+offset_bottom = 24.0
 
 [node name="Slider" type="HSlider" parent="."]
-margin_right = 200.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 200, 24 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_minimum_size = Vector2(200, 24)
+layout_mode = 2
 
 [node name="Numbox" type="SpinBox" parent="."]
-margin_left = 204.0
-margin_right = 404.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 200, 24 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_minimum_size = Vector2(200, 24)
+layout_mode = 2

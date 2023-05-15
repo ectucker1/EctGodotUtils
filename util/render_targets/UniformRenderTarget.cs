@@ -4,7 +4,7 @@ using System;
 /// <summary>
 /// Passes in a render target as a texture uniform for the shader on this sprite.
 /// </summary>
-public class UniformRenderTarget : Sprite
+public partial class UniformRenderTarget : Sprite2D
 {
     /// <summary>
     /// The render target to pass in.
@@ -23,7 +23,7 @@ public class UniformRenderTarget : Sprite
         {
             if (Material is ShaderMaterial shaderMaterial)
             {
-                shaderMaterial.SetShaderParam(_uniform, viewport.GetTexture());
+                shaderMaterial.SetShaderParameter(_uniform, viewport.GetTexture());
             }
         });
     }

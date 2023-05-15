@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 /// <summary>
 /// A type of state machine that can be in any number of states concurrently.
 /// </summary>
 /// <typeparam name="T">The type of object this state machine applies to</typeparam>
-public class StateSet<T> : StateMachine<T>
+public partial class StateSet<T> : StateMachine<T>
 {
     /// <summary>
     /// Creates a new StateSet for the given object.

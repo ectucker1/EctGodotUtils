@@ -1,21 +1,21 @@
 using Godot;
 using System;
 
-public class StateTestPlayer : KinematicBody2D
+public partial class StateTestPlayer : CharacterBody2D
 {
 	public StateStack<StateTestPlayer> MovementState;
 
-	public Vector2 Velocity = Vector2.Zero;
-	
 	public override void _Ready()
 	{
 		base._Ready();
 		
 		MovementState = new StateStack<StateTestPlayer>(this, new StateTestGroundState(this));
 		AddChild(MovementState);
+		
+		UpDirection = Vector2.Up;
 	}
 
-	public override void _PhysicsProcess(float delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
 
@@ -23,6 +23,6 @@ public class StateTestPlayer : KinematicBody2D
 		Velocity += Vector2.Down * 9.8f;
 		
 		// Move along velocity
-		Velocity = MoveAndSlide(Velocity, Vector2.Up);
+		MoveAndSlide();
 	}
 }

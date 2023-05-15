@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 /// Utility for displaying debug information.
 /// </summary>
-public class DebugOverlay : Control
+public partial class DebugOverlay : Control
 {
     private static DebugOverlay _instance;
     
@@ -23,7 +23,7 @@ public class DebugOverlay : Control
     /// <param name="content">The content of the message</param>
     /// <param name="priority">The message priority. Lower priorities are displayed first in the list</param>
     /// <param name="time">The amount of time to leave the message on screen, if not refreshed</param>
-    public static void AddMessage(Godot.Object src, string prefix, string content, int priority = Int32.MaxValue, float time = 0.1f)
+    public static void AddMessage(GodotObject src, string prefix, string content, int priority = Int32.MaxValue, float time = 0.1f)
     {
         if (_instance is null) return;
         var item = new DebugMessage(src, priority, prefix, content, Colors.White, time);
@@ -44,7 +44,7 @@ public class DebugOverlay : Control
     /// <param name="color">The color to display the message with</param>
     /// <param name="priority">The message priority. Lower priorities are displayed first in the list</param>
     /// <param name="time">The amount of time to leave the message on screen, if not refreshed</param>
-    public static void AddMessage(Godot.Object src, string prefix, string content, Color color, int priority = Int32.MaxValue, float time = 0.1f)
+    public static void AddMessage(GodotObject src, string prefix, string content, Color color, int priority = Int32.MaxValue, float time = 0.1f)
     {
         if (_instance is null) return;
         var item = new DebugMessage(src, priority, prefix, content, color, time);
@@ -64,7 +64,7 @@ public class DebugOverlay : Control
     public static void DrawVectorFrom(Vector2 from, Vector2 vector, Color color)
     {
         InWorldOverlay.Drawables.Add(new DebugVector(ConvertPoint(from), vector, color));
-        InWorldOverlay.Instance.Update();
+        InWorldOverlay.Instance.QueueRedraw();
     }
 
     /// <summary>
@@ -76,7 +76,7 @@ public class DebugOverlay : Control
     public static void DrawVectorBetween(Vector2 from, Vector2 to, Color color)
     {
         InWorldOverlay.Drawables.Add(new DebugVector(ConvertPoint(from), to - from, color));
-        InWorldOverlay.Instance.Update();
+        InWorldOverlay.Instance.QueueRedraw();
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public class DebugOverlay : Control
     public static void DrawPoint(Vector2 point, Color color)
     {
         InWorldOverlay.Drawables.Add(new DebugPoint(ConvertPoint(point), color));
-        InWorldOverlay.Instance.Update();
+        InWorldOverlay.Instance.QueueRedraw();
     }
     
     private static Vector2 ConvertPoint(Vector2 point)
@@ -106,7 +106,7 @@ public class DebugOverlay : Control
         _instance = this;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 

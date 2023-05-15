@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public class CameraTest : Node2D
+public partial class CameraTest : Node2D
 {
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
 

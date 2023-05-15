@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class DebugPoint : IDebugDrawable
+public partial class DebugPoint : IDebugDrawable
 {
     public readonly Vector2 Point;
     public readonly Color Color;

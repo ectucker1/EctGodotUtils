@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Godot;
 
@@ -9,7 +9,7 @@ using Godot;
 /// They can also be cancelled midway through - function code can handle TaskCanceledException for this case.
 /// Call AsyncRoutine.Start to begin.
 /// </summary>
-public class AsyncRoutine : Reference
+public partial class AsyncRoutine : RefCounted
 {
     private readonly Node _owner;
     /// <summary>
@@ -55,7 +55,7 @@ public class AsyncRoutine : Reference
     /// </summary>
     /// <param name="time">The amount of time to wait in seconds.</param>
     /// <param name="pauseModeProcess">Whether or not to count down the time while the game is paused</param>
-    public async Task Delay(float time, bool pauseModeProcess = false)
+    public async Task Delay(double time, bool pauseModeProcess = false)
     {
         await ToSignal(_owner.GetTree().CreateTimer(time, pauseModeProcess), "timeout");
         ThrowIfStopped();
@@ -66,7 +66,7 @@ public class AsyncRoutine : Reference
     /// This is equivalent to the next _process.
     /// </summary>
     /// <returns>The time since the last _process, in seconds.</returns>
-    public async Task<float> IdleFrame()
+    public async Task<double> IdleFrame()
     {
         do
         {
@@ -81,7 +81,7 @@ public class AsyncRoutine : Reference
     /// This is equivalent to the next _physics_process.
     /// </summary>
     /// <returns>The time since the last _physics_process, in seconds.</returns>
-    public async Task<float> PhysicsFrame()
+    public async Task<double> PhysicsFrame()
     {
         do
         {
@@ -106,7 +106,7 @@ public class AsyncRoutine : Reference
     /// </summary>
     /// <param name="source">The source of the signal</param>
     /// <param name="signal">The signal to wait for</param>
-    public async Task Signal(Godot.Object source, string signal)
+    public async Task Signal(GodotObject source, string signal)
     {
         await ToSignal(source, signal);
         ThrowIfStopped();
@@ -123,7 +123,7 @@ public class AsyncRoutine : Reference
     /// <summary>
     /// An exception meaning that the owner node of a task has been destroyed
     /// </summary>
-    public class TaskOwnerInvalidException : OperationCanceledException { }
+    public partial class TaskOwnerInvalidException : OperationCanceledException { }
     
     private async Task Run(Func<AsyncRoutine, Task> task)
     {

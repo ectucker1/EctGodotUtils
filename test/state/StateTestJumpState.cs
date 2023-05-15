@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class StateTestJumpState : StateNode<StateTestPlayer>
+public partial class StateTestJumpState : StateNode<StateTestPlayer>
 {
     public StateTestJumpState(StateTestPlayer player) : base(player)
     {
@@ -10,18 +10,18 @@ public class StateTestJumpState : StateNode<StateTestPlayer>
     public override void Enter()
     {
         StateOwner.Modulate = Colors.Red;
-        StateOwner.Velocity.y = -200;
+        StateOwner.Velocity = new Vector2(StateOwner.Velocity.X, -200);
     }
 
     public override void Exit()
     {
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
 
-        if (StateOwner.Velocity.y > 0)
+        if (StateOwner.Velocity.Y > 0)
         {
             StateOwner.MovementState.ReplaceState(new StateTestFallState(StateOwner));
         }

@@ -1,16 +1,16 @@
-﻿using System;
+using System;
 using Godot;
 
-public class DebugMessage : IEquatable<DebugMessage>, IComparable<DebugMessage>
+public partial class DebugMessage : IEquatable<DebugMessage>, IComparable<DebugMessage>
 {
     private readonly ulong _srcID;
     private readonly string _prefix;
     private readonly string _content;
     private readonly int _priority;
     private readonly Color _color;
-    private float _time;
+    private double _time;
 
-    public DebugMessage(Godot.Object src, int priority, string prefix, string content, Color color, float time)
+    public DebugMessage(GodotObject src, int priority, string prefix, string content, Color color, float time)
     {
         _srcID = src.GetInstanceId();
         _priority = priority;
@@ -61,7 +61,7 @@ public class DebugMessage : IEquatable<DebugMessage>, IComparable<DebugMessage>
         return string.Compare(_prefix, other._prefix, StringComparison.Ordinal);
     }
 
-    public bool IsFinished(float delta)
+    public bool IsFinished(double delta)
     {
         _time -= delta;
         return _time <= 0;

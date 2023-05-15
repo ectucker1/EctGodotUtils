@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 /// A stream collection that plays it's first member with an increasing pitch.
 /// </summary>
-public class AudioStreamPitchSequence : AAudioStreamCollection
+public partial class AudioStreamPitchSequence : AAudioStreamCollection
 {
     /// <summary>
     /// The time to wait between plays before resetting the sequence the base pitch.
@@ -23,7 +23,7 @@ public class AudioStreamPitchSequence : AAudioStreamCollection
     [Export]
     public float PitchScaleDelta = 0.1f;
     
-    private float _timeSincePlayed = 0.0f;
+    private double _timeSincePlayed = 0.0f;
     
     private int _nextPlay = 0;
     
@@ -38,7 +38,7 @@ public class AudioStreamPitchSequence : AAudioStreamCollection
         _nextPlay += 1;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 

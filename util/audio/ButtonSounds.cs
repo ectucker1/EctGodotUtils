@@ -5,7 +5,7 @@ using System;
 /// A script for a node that plays sounds when a button is hovered on or pressed.
 /// Sounds may be any kind of audio stream, collection, etc.
 /// </summary>
-public class ButtonSounds : Node
+public partial class ButtonSounds : Node
 {
 	private AudioStreamProxy _hoverSound;
 	private AudioStreamProxy _pressedSound;
@@ -19,8 +19,8 @@ public class ButtonSounds : Node
 
 		if (GetParent() is BaseButton button)
 		{
-			button.Connect(SignalNames.CONTROL_MOUSE_ENTERED, this, nameof(_Hover));
-			button.Connect(SignalNames.BUTTON_PRESSED, this, nameof(_Pressed));
+			button.Connect(SignalNames.CONTROL_MOUSE_ENTERED, new Callable(this, nameof(_Hover)));
+			button.Connect(SignalNames.BUTTON_PRESSED, new Callable(this, nameof(_Pressed)));
 		}
 	}
 

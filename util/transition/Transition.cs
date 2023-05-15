@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 /// Global overlay used to transition smoothly between scenes.
 /// Will play the configured Out and In animations on the animation player.
 /// </summary>
-public class Transition : Control
+public partial class Transition : Control
 {
     private static Transition _instance;
 
@@ -45,7 +45,7 @@ public class Transition : Control
         _anim.Play("Out");
         await routine.ToSignal(_anim, SignalNames.ANIMATION_FINISHED);
 
-        GetTree().ChangeScene(_next);
+        GetTree().ChangeSceneToFile(_next);
         
         _anim.Play("In");
         await routine.ToSignal(_anim, SignalNames.ANIMATION_FINISHED);

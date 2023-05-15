@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -7,7 +7,7 @@ using Godot;
 /// Could be in one or multiple states at once
 /// </summary>
 /// <typeparam name="T">The type of object this state machine applies to</typeparam>
-public abstract class StateMachine<T> : Node2D
+public abstract partial class StateMachine<T> : Node2D
 {
     /// <summary>
     /// The object this state machine is for.
