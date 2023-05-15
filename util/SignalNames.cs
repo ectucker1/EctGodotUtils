@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// Contains const strings of common signals, to make the API less stringy.
 /// </summary>
 public static class SignalNames

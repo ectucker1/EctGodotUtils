@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 /// Utility for passing common extra shader parameters, such as the delta time, as uniforms.
 /// </summary>
-public class PassShaderParamsControl : Control
+public partial class PassShaderParamsControl : Control
 {
     [Export]
     private string _deltaUniform = "";
@@ -21,13 +21,13 @@ public class PassShaderParamsControl : Control
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
         if (_deltaUniform != "")
         {
-            _material.SetShaderParam(_deltaUniform, delta);
+            _material.SetShaderParameter(_deltaUniform, delta);
         }
     }
 }

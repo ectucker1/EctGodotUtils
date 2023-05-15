@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Reflection;
 
 /// <summary>
 /// Annotation applied to static variables to act as live values.
 /// </summary>
 [AttributeUsage(AttributeTargets.Field)]
-public class LiveValue : Attribute
+public partial class LiveValue : Attribute
 {
     public LVType Type = LVType.SWITCH;
     public float Min = 0;

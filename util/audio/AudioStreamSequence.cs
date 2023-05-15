@@ -3,7 +3,7 @@ using Godot;
 /// <summary>
 /// A stream collection that plays its members in sequence.
 /// </summary>
-public class AudioStreamSequence : AAudioStreamCollection
+public partial class AudioStreamSequence : AAudioStreamCollection
 {
 	/// <summary>
 	/// The time to wait between plays before resetting the sequence to the first element.
@@ -17,7 +17,7 @@ public class AudioStreamSequence : AAudioStreamCollection
 	[Export]
 	public bool Repeat = false;
 	
-	private float _timeSincePlayed = 0.0f;
+	private double _timeSincePlayed = 0.0f;
 	
 	private int _nextPlay = 0;
 	
@@ -38,7 +38,7 @@ public class AudioStreamSequence : AAudioStreamCollection
 		}
 	}
 
-	public override void _Process(float delta)
+	public override void _Process(double delta)
 	{
 		base._Process(delta);
 

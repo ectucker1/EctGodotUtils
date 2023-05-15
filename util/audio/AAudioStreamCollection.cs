@@ -1,12 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
-using Object = Godot.Object;
 
 /// <summary>
 /// Abstract base for audio stream collections.
 /// </summary>
-public abstract class AAudioStreamCollection : Node, IAudioCollection
+public abstract partial class AAudioStreamCollection : Node, IAudioCollection
 {
     protected readonly List<AudioStreamProxy> Streams = new List<AudioStreamProxy>();
 
@@ -30,7 +29,7 @@ public abstract class AAudioStreamCollection : Node, IAudioCollection
     /// Emitted whenever an element in the collection finishes playing.
     /// </summary>
     [Signal]
-    public delegate void Finished();
+    public delegate void FinishedEventHandler();
 
     public override void _Ready()
     {
@@ -41,7 +40,7 @@ public abstract class AAudioStreamCollection : Node, IAudioCollection
             AudioStreamProxy proxy = new AudioStreamProxy(child);
             if (proxy.Valid)
             {
-                proxy.Connect(nameof(AudioStreamProxy.Finished), this, nameof(EmitFinished));
+                proxy.Finished += () => EmitSignal(SignalName.Finished);
                 Streams.Add(proxy);
             }
         }
@@ -68,13 +67,8 @@ public abstract class AAudioStreamCollection : Node, IAudioCollection
         }
     }
 
-    private void EmitFinished()
+    public void ConnectFinished(Callable callable)
     {
-        EmitSignal(nameof(Finished));
-    }
-    
-    public void ConnectFinished(Object obj, string target)
-    {
-        Connect(nameof(Finished), obj, target);
+        Connect(SignalName.Finished, callable);
     }
 }

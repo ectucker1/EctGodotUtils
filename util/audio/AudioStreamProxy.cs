@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 /// A proxy wrapper around an AudioStreamPlayer, AudioStreamPlayer2D, or AudioStreamPlayer3D.
 /// </summary>
-public class AudioStreamProxy : Godot.Object
+public partial class AudioStreamProxy : GodotObject
 {
     private enum AudioStreamType
     {
@@ -87,7 +87,7 @@ public class AudioStreamProxy : Godot.Object
                 case AudioStreamType.STREAM_PLAYER_2D:
                     return _player2D.VolumeDb;
                 case AudioStreamType.STREAM_PLAYER_3D:
-                    return _player3D.UnitDb;
+                    return _player3D.VolumeDb;
                 default:
                     return 0.0f;
             }
@@ -103,66 +103,66 @@ public class AudioStreamProxy : Godot.Object
                     _player2D.VolumeDb = value;
                     break;
                 case AudioStreamType.STREAM_PLAYER_3D:
-                    _player3D.UnitDb = value;
+                    _player3D.VolumeDb = value;
                     break;
             }
         }
     }
     
     [Signal]
-    public delegate void Finished();
+    public delegate void FinishedEventHandler();
 
     public AudioStreamProxy(AudioStreamPlayer player)
     {
         _type = AudioStreamType.STREAM_PLAYER;
         this._player = player;
-        this._player.Connect(SignalNames.AUDIOSTREAM_FINISHED, this, nameof(EmitFinished));
+        this._player.Finished += EmitFinished;
     }
 
     public AudioStreamProxy(AudioStreamPlayer2D player)
     {
         _type = AudioStreamType.STREAM_PLAYER_2D;
         this._player2D = player;
-        this._player2D.Connect(SignalNames.AUDIOSTREAM_FINISHED, this, nameof(EmitFinished));
+        this._player2D.Finished += EmitFinished;
     }
 
     public AudioStreamProxy(AudioStreamPlayer3D player)
     {
         _type = AudioStreamType.STREAM_PLAYER_3D;
         this._player3D = player;
-        this._player3D.Connect(SignalNames.AUDIOSTREAM_FINISHED, this, nameof(EmitFinished));
+        this._player3D.Finished += EmitFinished;
     }
     
     private void EmitFinished()
     {
         EmitSignal(nameof(Finished));
     }
-    
+
     public AudioStreamProxy(Node other)
     {
         if (other is AudioStreamPlayer player)
         {
             _type = AudioStreamType.STREAM_PLAYER;
             this._player = player;
-            this._player.Connect(SignalNames.AUDIOSTREAM_FINISHED, this, nameof(EmitFinished));
+            this._player.Finished += () => EmitSignal(SignalName.Finished);
         }
         else if (other is AudioStreamPlayer2D player2D)
         {
             _type = AudioStreamType.STREAM_PLAYER_2D;
             this._player2D = player2D;
-            this._player2D.Connect(SignalNames.AUDIOSTREAM_FINISHED, this, nameof(EmitFinished));
+            this._player2D.Finished += () => EmitSignal(SignalName.Finished);
         }
         else if (other is AudioStreamPlayer3D player3D)
         {
             _type = AudioStreamType.STREAM_PLAYER_3D;
             this._player3D = player3D;
-            this._player3D.Connect(SignalNames.AUDIOSTREAM_FINISHED, this, nameof(EmitFinished));
+            this._player3D.Finished += () => EmitSignal(SignalName.Finished);
         }
         else if (other is IAudioCollection collection)
         {
             _type = AudioStreamType.STREAM_COLLECTION;
             this._collection = collection;
-            this._collection.ConnectFinished(this, nameof(EmitFinished));
+            this._collection.ConnectFinished(new Callable(this, nameof(EmitFinished)));
         }
     }
 

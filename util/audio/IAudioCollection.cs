@@ -1,4 +1,6 @@
-﻿/// <summary>
+using Godot;
+
+/// <summary>
 /// An interface representing a collection of audio streams.
 /// </summary>
 public interface IAudioCollection
@@ -24,9 +26,8 @@ public interface IAudioCollection
     void Stop();
 
     /// <summary>
-    /// Connects the Finished signal of this collection to the given object.
+    /// Connects the Finished signal of this collection to the given callable.
     /// </summary>
-    /// <param name="obj">The object to connect to</param>
-    /// <param name="target">The method to connect to on the object.</param>
-    void ConnectFinished(Godot.Object obj, string target);
+    /// <param name="callable">The callable to connect to</param>
+    void ConnectFinished(Callable callable);
 }

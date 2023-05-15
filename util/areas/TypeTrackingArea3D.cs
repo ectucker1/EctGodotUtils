@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -6,7 +6,7 @@ using Godot;
 /// This shouldn't be attached to any nodes, but rather extended from with a concrete type.
 /// </summary>
 /// <typeparam name="T">The generic type to track</typeparam>
-public class TypeTrackingArea3D<T> : Area
+public partial class TypeTrackingArea3D<T> : Area3D
 {
     /// <summary>
     /// The set of nodes of the tracked type currently overlapping this area.
@@ -17,23 +17,23 @@ public class TypeTrackingArea3D<T> : Area
     /// Emitted whenever a new node of the tracked type enters the area.
     /// </summary>
     [Signal]
-    public delegate void TypeEntered(Spatial typed);
+    public delegate void TypeEnteredEventHandler(Node3D typed);
 
     /// <summary>
     /// Emitted whenever a node of the tracked type exits the area.
     /// </summary>
     [Signal]
-    public delegate void TypeExited(Spatial typed);
+    public delegate void TypeExitedEventHandler(Node3D typed);
         
     public override void _Ready()
     {
         base._Ready();
 
-        Connect(SignalNames.AREA2D_AREA_ENTERED,  this, nameof(_AreaEntered));
-        Connect(SignalNames.AREA2D_AREA_EXITED, this, nameof(_AreaExited));
+        Connect(SignalNames.AREA2D_AREA_ENTERED, new Callable(this, nameof(_AreaEntered)));
+        Connect(SignalNames.AREA2D_AREA_EXITED, new Callable(this, nameof(_AreaExited)));
         
-        Connect(SignalNames.AREA2D_BODY_ENTERED,  this, nameof(_BodyEntered));
-        Connect(SignalNames.AREA2D_BODY_EXITED, this, nameof(_BodyExited));
+        Connect(SignalNames.AREA2D_BODY_ENTERED, new Callable(this, nameof(_BodyEntered)));
+        Connect(SignalNames.AREA2D_BODY_EXITED, new Callable(this, nameof(_BodyExited)));
     }
 
     private void _AreaEntered(Area2D area)
@@ -41,7 +41,7 @@ public class TypeTrackingArea3D<T> : Area
         if (area is T typed)
         {
             Tracked.Add(typed);
-            EmitSignal(nameof(TypeEntered), typed);
+            EmitSignal(SignalName.TypeEntered, area);
         }
     }
     
@@ -50,7 +50,7 @@ public class TypeTrackingArea3D<T> : Area
         if (area is T typed)
         {
             Tracked.Remove(typed);
-            EmitSignal(nameof(TypeExited), typed);
+            EmitSignal(SignalName.TypeExited, area);
         }
     }
 
@@ -59,7 +59,7 @@ public class TypeTrackingArea3D<T> : Area
         if (body is T typed)
         {
             Tracked.Add(typed);
-            EmitSignal(nameof(TypeEntered), typed);
+            EmitSignal(SignalName.TypeEntered, body);
         }
     }
     
@@ -68,7 +68,7 @@ public class TypeTrackingArea3D<T> : Area
         if (body is T typed)
         {
             Tracked.Remove(typed);
-            EmitSignal(nameof(TypeExited), typed);
+            EmitSignal(SignalName.TypeExited, body);
         }
     }
 }

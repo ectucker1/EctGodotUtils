@@ -6,7 +6,7 @@ using System.Collections.Generic;
 /// Node creating a chain of its children simulated by verlet physics.
 /// This can be used for hair and other dangling animations.
 /// </summary>
-public class VerletChain : Node2D
+public partial class VerletChain : Node2D
 {
     private List<VerletPoint> _points;
     private List<VerletStick> _sticks;
@@ -37,7 +37,7 @@ public class VerletChain : Node2D
         _lastPosition = Position;
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 
@@ -67,7 +67,7 @@ public class VerletChain : Node2D
         _lastPosition = Position;
     }
 
-    private void ApplyForces(float delta)
+    private void ApplyForces(double delta)
     {
         // Forces
         foreach (VerletPoint point in _points)
@@ -77,12 +77,12 @@ public class VerletChain : Node2D
                 Vector2 velocity = (point.Position - point.OldPosition) * _dampening;
                 point.OldPosition = point.Position;
                 point.Position += velocity;
-                point.Position += Vector2.Down * _gravity * delta * delta;
+                point.Position += Vector2.Down * (float) (_gravity * delta * delta);
             }
         }
     }
 
-    private void ApplyConstraints(float delta)
+    private void ApplyConstraints(double delta)
     {
         for (int i = 0; i < 50; i++)
         {

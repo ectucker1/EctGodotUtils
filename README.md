@@ -14,10 +14,6 @@ Some examples of utilities included (not comprehensive):
 - Screenshake
 - Coroutines using aync functions
 
-The repository also contains copies of a couple other addons that pair well with it:
-- [GodotExtraMath](https://github.com/aaronfranke/GodotExtraMath)
-- [godot-plugin-refresher](https://github.com/godot-extended-libraries/godot-plugin-refresher)
-
 ## Installation in Existing Project
 
 1. Copy the `addons` and `util` folders into your project (you can rename util if you want).

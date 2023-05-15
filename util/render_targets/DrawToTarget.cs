@@ -1,10 +1,10 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 /// Script that causes a sprite to be moved to a viewport registered as a render target.
 /// See RenderTargets.
 /// </summary>
-public class DrawToTarget : Node2D
+public partial class DrawToTarget : Node2D
 {
     [Export]
     private string _target = RenderTargets.GAMEPLAY_VIEWPORT;
@@ -38,7 +38,7 @@ public class DrawToTarget : Node2D
         _started = true;
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
         

@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/book2.ogg-617a0b240e4f53008afb4c9b42792b54.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bco26pmx1g3un"
+path="res://.godot/imported/book2.ogg-617a0b240e4f53008afb4c9b42792b54.oggvorbisstr"
 
 [deps]
 
 source_file="res://test/audio/book2.ogg"
-dest_files=[ "res://.import/book2.ogg-617a0b240e4f53008afb4c9b42792b54.oggstr" ]
+dest_files=["res://.godot/imported/book2.ogg-617a0b240e4f53008afb4c9b42792b54.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

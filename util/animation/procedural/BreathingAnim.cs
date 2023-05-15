@@ -6,7 +6,7 @@ using System.Collections.Generic;
 /// Utility node that can create a breathing animation for a character made of multiple parts.
 /// Animates other nodes set in the export variables.
 /// </summary>
-public class BreathingAnim : Node
+public partial class BreathingAnim : Node
 {
     [Export]
     private NodePath _searchRoot = "";
@@ -25,7 +25,7 @@ public class BreathingAnim : Node
 
     private List<Node2D>[] _sections;
 
-    private float _time = 0.0f;
+    private double _time = 0.0f;
     private int _sectionIndex = 0;
 
     private enum BreathingState
@@ -45,7 +45,7 @@ public class BreathingAnim : Node
         for (int i = 0; i < _breathingSearches.Length; i++)
         {
             _sections[i] = new List<Node2D>();
-            if (root.FindNode(_breathingSearches[i]) is Node2D node2D)
+            if (root.FindChild(_breathingSearches[i]) is Node2D node2D)
                 _sections[i].Add(node2D);
         }
         
@@ -53,7 +53,7 @@ public class BreathingAnim : Node
             SetProcess(false);
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 

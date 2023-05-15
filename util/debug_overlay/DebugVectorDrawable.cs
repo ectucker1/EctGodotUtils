@@ -1,6 +1,6 @@
-﻿using Godot;
+using Godot;
 
-public class DebugVector : IDebugDrawable
+public partial class DebugVector : IDebugDrawable
 {
     public readonly Vector2 From;
     public readonly Vector2 Vector;

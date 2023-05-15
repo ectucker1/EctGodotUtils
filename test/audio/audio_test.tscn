@@ -1,120 +1,117 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=16 format=3 uid="uid://84enmh4oed4c"]
 
-[ext_resource path="res://test/audio/test_music.ogg" type="AudioStream" id=1]
-[ext_resource path="res://test/audio/step1.ogg" type="AudioStream" id=2]
-[ext_resource path="res://test/audio/AudioTestButton.cs" type="Script" id=3]
-[ext_resource path="res://util/audio/AudioStreamRandomizer.cs" type="Script" id=4]
-[ext_resource path="res://test/audio/step2.ogg" type="AudioStream" id=5]
-[ext_resource path="res://util/audio/AudioStreamPitchSequence.cs" type="Script" id=6]
-[ext_resource path="res://test/audio/coins.ogg" type="AudioStream" id=7]
-[ext_resource path="res://util/audio/AudioStreamSequence.cs" type="Script" id=8]
-[ext_resource path="res://test/audio/book1.ogg" type="AudioStream" id=9]
-[ext_resource path="res://test/audio/book2.ogg" type="AudioStream" id=10]
-[ext_resource path="res://test/audio/book3.ogg" type="AudioStream" id=11]
-[ext_resource path="res://test/audio/1.ogg" type="AudioStream" id=12]
-[ext_resource path="res://test/audio/3.ogg" type="AudioStream" id=13]
-[ext_resource path="res://test/audio/2.ogg" type="AudioStream" id=14]
-[ext_resource path="res://base/button_sounds.tscn" type="PackedScene" id=15]
+[ext_resource type="AudioStream" uid="uid://dvfvo1021qkcl" path="res://test/audio/test_music.ogg" id="1"]
+[ext_resource type="AudioStream" uid="uid://duqerykj45mij" path="res://test/audio/step1.ogg" id="2"]
+[ext_resource type="Script" path="res://test/audio/AudioTestButton.cs" id="3"]
+[ext_resource type="Script" path="res://util/audio/AudioStreamRandomizer.cs" id="4"]
+[ext_resource type="AudioStream" uid="uid://bni2dd1ohta22" path="res://test/audio/step2.ogg" id="5"]
+[ext_resource type="Script" path="res://util/audio/AudioStreamPitchSequence.cs" id="6"]
+[ext_resource type="AudioStream" uid="uid://ba635c0nk8qnc" path="res://test/audio/coins.ogg" id="7"]
+[ext_resource type="Script" path="res://util/audio/AudioStreamSequence.cs" id="8"]
+[ext_resource type="AudioStream" uid="uid://bq6u440ytpnw3" path="res://test/audio/book1.ogg" id="9"]
+[ext_resource type="AudioStream" uid="uid://bco26pmx1g3un" path="res://test/audio/book2.ogg" id="10"]
+[ext_resource type="AudioStream" uid="uid://dk0vubkehu635" path="res://test/audio/book3.ogg" id="11"]
+[ext_resource type="AudioStream" uid="uid://ble1qcapx5eqg" path="res://test/audio/1.ogg" id="12"]
+[ext_resource type="AudioStream" uid="uid://ke5vao2jugff" path="res://test/audio/3.ogg" id="13"]
+[ext_resource type="AudioStream" uid="uid://dd415jxdokdry" path="res://test/audio/2.ogg" id="14"]
+[ext_resource type="PackedScene" path="res://base/button_sounds.tscn" id="15"]
 
 [node name="AudioTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="List" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
 anchor_bottom = 1.0
-margin_right = 12.0
-rect_min_size = Vector2( 200, 0 )
+offset_right = 12.0
 alignment = 1
 
 [node name="StepRandom" type="Button" parent="List"]
-margin_top = 494.0
-margin_right = 200.0
-margin_bottom = 514.0
+layout_mode = 2
 text = "Step Random"
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="Randomizer" type="Node" parent="List/StepRandom"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 PitchScaleRange = 0.2
 VolumeDbRange = 0.1
 
 [node name="Step1" type="AudioStreamPlayer" parent="List/StepRandom/Randomizer"]
-stream = ExtResource( 2 )
-bus = "Effects"
+stream = ExtResource("2")
+bus = &"Effects"
 
 [node name="Step2" type="AudioStreamPlayer" parent="List/StepRandom/Randomizer"]
-stream = ExtResource( 5 )
-bus = "Effects"
+stream = ExtResource("5")
+bus = &"Effects"
 
-[node name="ButtonSounds" parent="List/StepRandom" instance=ExtResource( 15 )]
+[node name="ButtonSounds" parent="List/StepRandom" instance=ExtResource("15")]
 
 [node name="CoinPitched" type="Button" parent="List"]
-margin_top = 518.0
-margin_right = 200.0
-margin_bottom = 538.0
+layout_mode = 2
 text = "Coin Pitch"
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="PitchedSequence" type="Node" parent="List/CoinPitched"]
-script = ExtResource( 6 )
+script = ExtResource("6")
 PitchScaleDelta = 0.05
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="List/CoinPitched/PitchedSequence"]
-stream = ExtResource( 7 )
+stream = ExtResource("7")
 
-[node name="ButtonSounds" parent="List/CoinPitched" instance=ExtResource( 15 )]
+[node name="ButtonSounds" parent="List/CoinPitched" instance=ExtResource("15")]
 
 [node name="BookSequence" type="Button" parent="List"]
-margin_top = 542.0
-margin_right = 200.0
-margin_bottom = 562.0
+layout_mode = 2
 text = "Book Sequence"
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="Sequence" type="Node" parent="List/BookSequence"]
-script = ExtResource( 8 )
+script = ExtResource("8")
 ResetCooldown = 3.0
 
 [node name="Book1" type="AudioStreamPlayer" parent="List/BookSequence/Sequence"]
-stream = ExtResource( 9 )
-bus = "Effects"
+stream = ExtResource("9")
+bus = &"Effects"
 
 [node name="Book2" type="AudioStreamPlayer" parent="List/BookSequence/Sequence"]
-stream = ExtResource( 10 )
-bus = "Effects"
+stream = ExtResource("10")
+bus = &"Effects"
 
 [node name="Book3" type="AudioStreamPlayer" parent="List/BookSequence/Sequence"]
-stream = ExtResource( 11 )
-bus = "Effects"
+stream = ExtResource("11")
+bus = &"Effects"
 
-[node name="ButtonSounds" parent="List/BookSequence" instance=ExtResource( 15 )]
+[node name="ButtonSounds" parent="List/BookSequence" instance=ExtResource("15")]
 
 [node name="VoiceoverSequence" type="Button" parent="List"]
-margin_top = 566.0
-margin_right = 200.0
-margin_bottom = 586.0
+layout_mode = 2
 text = "Voiceover Repat Sequence"
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="Sequence" type="Node" parent="List/VoiceoverSequence"]
-script = ExtResource( 8 )
+script = ExtResource("8")
 ResetCooldown = 3.0
 Repeat = true
 
 [node name="One" type="AudioStreamPlayer" parent="List/VoiceoverSequence/Sequence"]
-stream = ExtResource( 12 )
-bus = "Effects"
+stream = ExtResource("12")
+bus = &"Effects"
 
 [node name="Two" type="AudioStreamPlayer" parent="List/VoiceoverSequence/Sequence"]
-stream = ExtResource( 14 )
-bus = "Effects"
+stream = ExtResource("14")
+bus = &"Effects"
 
 [node name="Three" type="AudioStreamPlayer" parent="List/VoiceoverSequence/Sequence"]
-stream = ExtResource( 13 )
-bus = "Effects"
+stream = ExtResource("13")
+bus = &"Effects"
 
-[node name="ButtonSounds" parent="List/VoiceoverSequence" instance=ExtResource( 15 )]
+[node name="ButtonSounds" parent="List/VoiceoverSequence" instance=ExtResource("15")]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
-bus = "Music"
+stream = ExtResource("1")
+bus = &"Music"

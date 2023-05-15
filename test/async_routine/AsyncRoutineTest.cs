@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
-public class AsyncRoutineTest : Sprite
+public partial class AsyncRoutineTest : Sprite2D
 {
     private AnimationPlayer _animPlayer;
 
@@ -17,7 +17,7 @@ public class AsyncRoutineTest : Sprite
         _routine = AsyncRoutine.Start(this, TestRoutine);
 
         Button stop = GetParent().GetNode<Button>("Stop");
-        stop.Connect(SignalNames.BUTTON_PRESSED, this, nameof(_StopPressed));
+        stop.Connect(SignalNames.BUTTON_PRESSED, new Callable(this, nameof(_StopPressed)));
     }
 
     private async Task TestRoutine(AsyncRoutine routine)
@@ -28,8 +28,8 @@ public class AsyncRoutineTest : Sprite
         
         for (int i = 0; i < 100; i++)
         {
-            float delta = await routine.PhysicsFrame();
-            GlobalPosition += Vector2.Right * delta * 50.0f;
+            double delta = await routine.PhysicsFrame();
+            GlobalPosition += Vector2.Right * (float) delta * 50.0f;
         }
 
         _animPlayer.Play("Test");
@@ -37,8 +37,8 @@ public class AsyncRoutineTest : Sprite
         
         for (int i = 0; i < 100; i++)
         {
-            float delta = await routine.PhysicsFrame();
-            GlobalPosition += Vector2.Left * delta * 50.0f;
+            double delta = await routine.PhysicsFrame();
+            GlobalPosition += Vector2.Left * (float) delta * 50.0f;
         }
         
         DebugOverlay.AddMessage(this, "Routine", "Finished");

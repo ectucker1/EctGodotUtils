@@ -12,10 +12,10 @@ __meta__ = {
 [node name="Split" type="HSplitContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = -8.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 split_offset = 8
@@ -24,34 +24,34 @@ __meta__ = {
 }
 
 [node name="Categories" type="Tree" parent="Split"]
-margin_right = 208.0
-margin_bottom = 1064.0
-rect_min_size = Vector2( 200, 0 )
+offset_right = 208.0
+offset_bottom = 1064.0
+custom_minimum_size = Vector2( 200, 0 )
 size_flags_vertical = 3
 
 [node name="Scroll" type="ScrollContainer" parent="Split"]
-margin_left = 220.0
-margin_right = 1904.0
-margin_bottom = 1064.0
+offset_left = 220.0
+offset_right = 1904.0
+offset_bottom = 1064.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Values" type="GridContainer" parent="Split/Scroll"]
-margin_right = 1684.0
-margin_bottom = 1064.0
+offset_right = 1684.0
+offset_bottom = 1064.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
 
 [node name="NameLabel" type="Label" parent="Split/Scroll/Values"]
-margin_right = 200.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 200, 0 )
+offset_right = 200.0
+offset_bottom = 14.0
+custom_minimum_size = Vector2( 200, 0 )
 text = "Name"
 
 [node name="ValueLabel" type="Label" parent="Split/Scroll/Values"]
-margin_left = 204.0
-margin_right = 404.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 200, 0 )
+offset_left = 204.0
+offset_right = 404.0
+offset_bottom = 14.0
+custom_minimum_size = Vector2( 200, 0 )
 text = "Value"

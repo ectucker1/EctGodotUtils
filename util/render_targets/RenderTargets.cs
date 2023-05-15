@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -10,14 +10,14 @@ public static class RenderTargets
     public const string GAMEPLAY_VIEWPORT = "GameplayViewport";
     public const string VELOCITY_VIEWPORT = "VelocityViewport";
 
-    private static Dictionary<string, Viewport> _targets = new Dictionary<string, Viewport>();
+    private static Dictionary<string, SubViewport> _targets = new Dictionary<string, SubViewport>();
 
     /// <summary>
     /// Registers the given viewport as a render target with the given name.
     /// </summary>
     /// <param name="name">The name to register the target as</param>
     /// <param name="viewport">The viewport to register</param>
-    public static void Register(string name, Viewport viewport)
+    public static void Register(string name, SubViewport viewport)
     {
         _targets[name] = viewport;
     }
@@ -27,11 +27,11 @@ public static class RenderTargets
     /// </summary>
     /// <param name="target">The name of the target to get</param>
     /// <returns>An Optional of the viewport</returns>
-    public static Optional<Viewport> Get(string target)
+    public static Optional<SubViewport> Get(string target)
     {
-        Viewport viewport;
+        SubViewport viewport;
         if (_targets.TryGetValue(target, out viewport))
-            return Optional<Viewport>.Some(viewport);
-        return Optional<Viewport>.None;
+            return Optional<SubViewport>.Some(viewport);
+        return Optional<SubViewport>.None;
     }
 }

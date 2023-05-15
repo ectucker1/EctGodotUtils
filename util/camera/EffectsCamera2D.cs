@@ -1,12 +1,12 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 /// Represents a camera which will have the offset from CameraEffects applied every frame.
 /// Should be extended for more advanced camera behavior.
 /// </summary>
-public class EffectsCamera2D : Camera2D
+public partial class EffectsCamera2D : Camera2D
 {
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     { 
         base._Process(delta);
         

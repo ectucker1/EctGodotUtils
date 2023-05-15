@@ -1,10 +1,10 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 /// Registers the viewport as a render target with it's name.
 /// Will also keep the viewport scaled to the size of the root, or another viewport being copied.
 /// </summary>
-public class RegisterRenderTarget : Viewport
+public partial class RegisterRenderTarget : SubViewport
 {
     /// <summary>
     /// Path to a viewport to copy the camera and size of.
@@ -17,12 +17,12 @@ public class RegisterRenderTarget : Viewport
     public override void _Ready()
     {
         if (_copyTransformPath != null)
-            _copyTransform = GetNode<Viewport>(_copyTransformPath);
+            _copyTransform = GetNode<SubViewport>(_copyTransformPath);
         
         if (_copyTransform == null)
-            _copyTransform = GetTree().Root;
+            _copyTransform = GetTree().Root.GetViewport();
         
-        _copyTransform.Connect("size_changed", this, nameof(_ScreenSizeChanged));
+        _copyTransform.Connect("size_changed", new Callable(this, nameof(_ScreenSizeChanged)));
         _ScreenSizeChanged();
 
         RenderTargets.Register(Name, this);
@@ -30,10 +30,11 @@ public class RegisterRenderTarget : Viewport
 
     private void _ScreenSizeChanged()
     {
-        Size = _copyTransform.GetVisibleRect().Size;
+        Vector2 size = _copyTransform.GetVisibleRect().Size;
+        Size = new Vector2I(Mathf.CeilToInt(size.X), Mathf.CeilToInt(size.Y));
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         base._Process(delta);
 

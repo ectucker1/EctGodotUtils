@@ -1,9 +1,9 @@
-﻿using Godot;
+using Godot;
 
 /// <summary>
 /// A stream collection which plays a random member each time.
 /// </summary>
-public class AudioStreamRandomizer : AAudioStreamCollection
+public partial class AudioStreamRandomizer : AAudioStreamCollection
 {
     /// <summary>
     /// The central point to randomize pitches around.

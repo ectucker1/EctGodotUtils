@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Godot;
@@ -7,7 +7,7 @@ using Godot.Collections;
 /// <summary>
 /// The data model for live values.
 /// </summary>
-public class LiveValuesModel
+public partial class LiveValuesModel
 {
     private const string DATA_PATH = "res://livevalues.json";
     
@@ -69,24 +69,25 @@ public class LiveValuesModel
 
     public void LoadJSON(bool onlyUnmodified)
     {
-        File file = new File();
-        if (file.FileExists(DATA_PATH))
+        if (FileAccess.FileExists(DATA_PATH))
         {
-            file.Open(DATA_PATH, File.ModeFlags.Read);
+            FileAccess file = FileAccess.Open(DATA_PATH, FileAccess.ModeFlags.Read);
             string jsonText = file.GetAsText();
-            var parsed = JSON.Parse(jsonText);
-            if (parsed.Result is Dictionary dict)
+            var parsed = Json.ParseString(jsonText);
+            if (parsed.VariantType == Variant.Type.Dictionary)
             {
+                var dict = parsed.AsGodotDictionary();
                 foreach (var category in dict.Keys)
                 {
-                    var categoryDict = dict[category] as Dictionary;
+                    var categoryDict = dict[category].AsGodotDictionary();
                     foreach (var variable in categoryDict.Keys)
                     {
                         LiveValue val = GetValue(category.ToString(), variable.ToString());
                         if (val != null)
                         {
-                            if (categoryDict[variable] is float f)
+                            if (categoryDict[variable].VariantType == Variant.Type.Float)
                             {
+                                var f = categoryDict[variable].AsSingle();
                                 if (!onlyUnmodified || val.LastLoadFloatVal != f)
                                 {
                                     if (onlyUnmodified)
@@ -97,8 +98,9 @@ public class LiveValuesModel
                                 val.LastLoadFloatVal = f;
                             }
 
-                            if (categoryDict[variable] is bool b)
+                            if (categoryDict[variable].VariantType == Variant.Type.Bool)
                             {
+                                var b = categoryDict[variable].AsBool();
                                 if (!onlyUnmodified || val.LastLoadBoolVal != b)
                                 {
                                     val.BoolVal = b;
@@ -110,16 +112,15 @@ public class LiveValuesModel
                     }
                 }
             }
+            file.Close();
         }
-        file.Close();
     }
 
     public void SaveJSON()
     {
         if (_valueCategories != null)
         {
-            File file = new File();
-            file.Open(DATA_PATH, File.ModeFlags.Write);
+            FileAccess file = FileAccess.Open(DATA_PATH, FileAccess.ModeFlags.Write);
             Dictionary dict = new Dictionary();
             foreach (var category in _valueCategories.Keys)
             {
@@ -141,8 +142,13 @@ public class LiveValuesModel
 
                 dict[category] = categoryDict;
             }
-            file.StoreLine(JSON.Print(dict, "  "));
+            file.StoreLine(Json.Stringify(dict, "  "));
             file.Close();
         }
+    }
+
+    public ulong GetModtime()
+    {
+        return FileAccess.GetModifiedTime(DATA_PATH);
     }
 }
