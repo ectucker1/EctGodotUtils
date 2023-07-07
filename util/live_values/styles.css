@@ -1,0 +1,25 @@
+html, body {
+    font-family: sans-serif;
+    margin: 40px auto;
+    max-width: 1300px;
+    line-height: 1.6;
+    font-size: 18px;
+    color: #444;
+    padding: 0 10px;
+    background: #EFEFEF;
+}
+
+.top-block {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.cat-button:hover {
+    color: #777;
+}
+
+.cat-button:active {
+    color: #111;
+}

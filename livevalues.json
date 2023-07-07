@@ -1,10 +1,1 @@
-{
-  "Test": {
-    "TEST_SPEED": 0.130681,
-    "TEST_REVERSE": true,
-    "TEST_VALUE": 0
-  },
-  "": {
-
-  }
-}
+{"Test": [{"name": "TEST_SPEED","category": "Test","min": 0,"max": 1,"value": 0.83012,"TypeId": "LiveValueRange"},{"name": "TEST_REVERSE","category": "Test","value": true,"TypeId": "LiveValueSwitch"}]}

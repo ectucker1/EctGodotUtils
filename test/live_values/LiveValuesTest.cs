@@ -3,10 +3,10 @@ using System;
 
 public class LiveValuesTest : Sprite
 {
-    [LiveValue(LVType.RANGE, 0.0f, 1.0f, "Test")]
+    [LiveValueRange(0.0f, 1.0f, "Test")]
     public static float TEST_SPEED = 0.5f;
 
-    [LiveValue(LVType.SWITCH, "Test")]
+    [LiveValueSwitch("Test")]
     public static bool TEST_REVERSE = false;
 
     public override void _Process(float delta)
