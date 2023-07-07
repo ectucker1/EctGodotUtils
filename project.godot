@@ -16,7 +16,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-LiveValuesClient="*res://addons/live_values/LiveValuesClient.cs"
+LiveValuesServer="*res://util/live_values/LiveValuesServer.cs"
 DebugAutoload="*res://base/debug_autoload.tscn"
 CameraEffects="*res://util/camera/CameraEffects.cs"
 AudioSettings="*res://util/audio/AudioSettings.cs"
@@ -35,7 +35,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/godot-plugin-refresher/plugin.cfg", "res://addons/live_values/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/godot-plugin-refresher/plugin.cfg" )
 
 [input]
 

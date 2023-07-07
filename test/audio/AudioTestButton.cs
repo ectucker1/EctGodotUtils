@@ -10,10 +10,9 @@ public class AudioTestButton : Button
 		base._Ready();
 
 		_collection = this.FindChild<IAudioCollection>();
-		Connect(SignalNames.BUTTON_PRESSED, this, nameof(_Pressed));
 	}
 
-	private void _Pressed()
+	public override void _Pressed()
 	{
 		_collection.Play();
 	}

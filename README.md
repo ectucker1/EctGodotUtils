@@ -2,7 +2,7 @@
 
 This repository contains a lot of common utilities I tend to rewrite for Godot game projects.
 They are all written in C# and thus exclusive to the Mono distribution of Godot.
-They are currently tested on Godot 3.5.1, but should be compatible with newer Godot 3 versions.
+They are currently tested on Godot 3.5.2, but should be compatible with newer Godot 3 versions.
 
 Some examples of utilities included (not comprehensive):
 - State machines
@@ -15,7 +15,6 @@ Some examples of utilities included (not comprehensive):
 
 The repository also contains copies of a couple other addons that pair well with it:
 - [GodotExtraMath](https://github.com/aaronfranke/GodotExtraMath)
-- [godot-plugin-refresher](https://github.com/godot-extended-libraries/godot-plugin-refresher)
 
 ## Installation in Existing Project
 
