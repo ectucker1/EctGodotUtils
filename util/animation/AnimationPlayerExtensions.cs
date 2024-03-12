@@ -1,5 +1,6 @@
 using System.Linq;
 using Godot;
+using Godot.Collections;
 
 /// <summary>
 /// Useful extension methods for the AnimationPlayer class.
@@ -35,8 +36,8 @@ public static class AnimationPlayerExtensions
     /// <param name="name">The name of the state to travel to</param>
     public static void TravelIfNot(this AnimationNodeStateMachinePlayback stateMachine, string name)
     {
-        string[] path = stateMachine.GetTravelPath();
-        if (path.Length == 0 || path[path.Length - 1] != name)
+        Array<StringName> path = stateMachine.GetTravelPath();
+        if (path.Count == 0 || path[^1] != name)
             stateMachine.Travel(name);
     }
 }
