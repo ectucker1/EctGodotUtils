@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw1r5d1h0j856"]
+
+[ext_resource type="Script" path="res://util/live_values/LVSwitchItem.cs" id="1_lvio3"]
+
+[node name="SwitchTemplate" type="CheckButton"]
+offset_left = 204.0
+offset_top = 38.0
+offset_right = 404.0
+offset_bottom = 78.0
+script = ExtResource("1_lvio3")

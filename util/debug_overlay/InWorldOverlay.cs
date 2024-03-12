@@ -29,6 +29,6 @@ public partial class InWorldOverlay : Node2D
     {
         base._Process(delta);
         
-        Visible = DebugOverlay.Shown;
+        Visible = DebugLayer.Shown;
     }
 }

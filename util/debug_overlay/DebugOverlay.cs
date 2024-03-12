@@ -5,14 +5,11 @@ using Godot;
 /// <summary>
 /// Utility for displaying debug information.
 /// </summary>
-public partial class DebugOverlay : Control
+public partial class DebugOverlay : RichTextLabel
 {
     private static DebugOverlay _instance;
     
-    private SortedSet<DebugMessage> _messages = new SortedSet<DebugMessage>();
-    private RichTextLabel _output;
-
-    public static bool Shown => _instance.Visible;
+    private readonly SortedSet<DebugMessage> _messages = new();
 
     /// <summary>
     /// Adds a text message to the debug overlay.
@@ -101,8 +98,6 @@ public partial class DebugOverlay : Control
     {
         base._Ready();
 
-        _output = this.FindChild<RichTextLabel>();
-
         _instance = this;
     }
 
@@ -113,10 +108,10 @@ public partial class DebugOverlay : Control
         AddMessage(this, "FPS", Engine.GetFramesPerSecond().ToString());
         
         List<DebugMessage> toRemove = new List<DebugMessage>();
-        _output.Clear();
+        Clear();
         foreach (var message in _messages)
         {
-            message.AddTo(_output);
+            message.AddTo(this);
             if (message.IsFinished(delta))
                 toRemove.Add(message);
         }
@@ -125,13 +120,5 @@ public partial class DebugOverlay : Control
         {
             _messages.Remove(message);
         }
-    }
-    
-    public override void _Input(InputEvent @event)
-    {
-        base._Input(@event);
-
-        if (@event.IsActionPressed("debug_show"))
-            Visible = !Visible;
     }
 }

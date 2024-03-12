@@ -1,15 +1,21 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=3 uid="uid://bvof41dbvkdfh"]
 
-[node name="MainScreen" type="Control"]
+[ext_resource type="Script" path="res://util/live_values/LiveValuesOverlay.cs" id="1_b0ka0"]
+
+[node name="LiveValuesOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
+mouse_filter = 2
+script = ExtResource("1_b0ka0")
 
 [node name="Split" type="HSplitContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
@@ -18,40 +24,33 @@ offset_right = -8.0
 offset_bottom = -8.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 split_offset = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Categories" type="Tree" parent="Split"]
-offset_right = 208.0
-offset_bottom = 1064.0
-custom_minimum_size = Vector2( 200, 0 )
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Scroll" type="ScrollContainer" parent="Split"]
-offset_left = 220.0
-offset_right = 1904.0
-offset_bottom = 1064.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="Values" type="GridContainer" parent="Split/Scroll"]
-offset_right = 1684.0
-offset_bottom = 1064.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 columns = 2
 
 [node name="NameLabel" type="Label" parent="Split/Scroll/Values"]
-offset_right = 200.0
-offset_bottom = 14.0
-custom_minimum_size = Vector2( 200, 0 )
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
 text = "Name"
 
 [node name="ValueLabel" type="Label" parent="Split/Scroll/Values"]
-offset_left = 204.0
-offset_right = 404.0
-offset_bottom = 14.0
-custom_minimum_size = Vector2( 200, 0 )
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
 text = "Value"
