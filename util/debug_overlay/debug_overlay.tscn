@@ -1,27 +1,37 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://bkvyunbav70ve"]
 
-[ext_resource path="res://util/debug_overlay/DebugOverlay.cs" type="Script" id=1]
-[ext_resource path="res://util/debug_overlay/inconsolata.ttf" type="FontFile" id=2]
+[ext_resource type="Script" path="res://util/debug_overlay/DebugOverlay.cs" id="1"]
+[ext_resource type="FontFile" uid="uid://cc8ac0b532jxa" path="res://util/debug_overlay/inconsolata.ttf" id="2"]
 
-[sub_resource type="FontFile" id=1]
-size = 48
-font_data = ExtResource( 2 )
+[sub_resource type="FontFile" id="1"]
+fallbacks = Array[Font]([ExtResource("2"), ExtResource("2")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [node name="DebugOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Output" type="RichTextLabel" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
 offset_top = 20.0
 mouse_filter = 2
-theme_override_fonts/normal_font = SubResource( 1 )
+theme_override_fonts/normal_font = SubResource("1")
 bbcode_enabled = true
 text = "Test"
+script = ExtResource("1")

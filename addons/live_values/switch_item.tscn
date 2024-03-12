@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://cw1r5d1h0j856"]
-
-[node name="SwitchTemplate" type="CheckButton"]
-offset_left = 204.0
-offset_top = 38.0
-offset_right = 404.0
-offset_bottom = 78.0
