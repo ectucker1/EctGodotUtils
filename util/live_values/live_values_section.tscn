@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bwkw6ykk2bt0n"]
+
+[node name="Values" type="ScrollContainer"]
+custom_minimum_size = Vector2(700, 0)
+offset_right = 515.0
+offset_bottom = 148.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 2
+
+[node name="NameLabel" type="Label" parent="GridContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Name"
+
+[node name="ValueLabel" type="Label" parent="GridContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Value"

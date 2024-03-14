@@ -9,8 +9,11 @@ using Godot;
 public class LiveValuesModel
 {
     private const string DataPath = "res://livevalues.ini";
+    private const string MidiPath = "res://livevalues_midi.ini";
     
     private readonly Dictionary<string, List<ILiveValue>> _valueCategories = new();
+
+    private readonly Dictionary<ILiveValue, MidiControlChannel> _mappings = new();
     
     public bool Modified { get; private set; }
 
@@ -38,6 +41,25 @@ public class LiveValuesModel
         }
 
         return null;
+    }
+
+    public void PutMapping(ILiveValue value, MidiControlChannel mapping)
+    {
+        _mappings[value] = mapping;
+    }
+
+    public void EraseMapping(ILiveValue value)
+    {
+        _mappings.Remove(value);
+    }
+    
+    public Optional<MidiControlChannel> GetMapping(ILiveValue value)
+    {
+        if (_mappings.TryGetValue(value, out var mapping))
+        {
+            return Optional<MidiControlChannel>.Some(mapping);
+        }
+        return Optional<MidiControlChannel>.None;
     }
 
     public void MarkModified()
@@ -118,31 +140,55 @@ public class LiveValuesModel
                     }
                 }
             }
+
+            var midiConfig = new ConfigFile();
+            if (midiConfig.Load(MidiPath) == Error.Ok)
+            {
+                foreach (var mapping in midiConfig.GetSections())
+                {
+                    string category = midiConfig.GetValue(mapping, "category").AsString();
+                    string key = midiConfig.GetValue(mapping, "key").AsString();
+                    int channel = midiConfig.GetValue(mapping, "channel").AsInt32();
+                    int controller = midiConfig.GetValue(mapping, "cc").AsInt32();
+                    float min = midiConfig.GetValue(mapping, "min").AsSingle();
+                    float max = midiConfig.GetValue(mapping, "max").AsSingle();
+                    foreach (ILiveValue value in _valueCategories[category])
+                    {
+                        if (value.VariableName.Equals(key))
+                        {
+                            _mappings[value] = new MidiControlChannel(channel, controller, min, max);
+                        }
+                    }
+                }
+            }
         }
     }
 
     public void SaveConfig()
     {
-        if (_valueCategories != null)
+        var config = new ConfigFile();
+        foreach (var category in _valueCategories)
         {
-            var config = new ConfigFile();
-
-            foreach (var category in _valueCategories)
+            foreach (var value in category.Value)
             {
-                foreach (var value in category.Value)
-                {
-                    config.SetValue(category.Key, value.VariableName, value.ToVariant());
-                }
+                config.SetValue(category.Key, value.VariableName, value.ToVariant());
             }
-
-            config.Save(DataPath);
         }
+        config.Save(DataPath);
+
+        var midiConfig = new ConfigFile();
+        foreach (var pair in _mappings)
+        {
+            string mapping = $"{pair.Key.Category}_{pair.Key.VariableName}";
+            midiConfig.SetValue(mapping, "category", pair.Key.Category);
+            midiConfig.SetValue(mapping, "key", pair.Key.VariableName);
+            midiConfig.SetValue(mapping, "channel", pair.Value.Channel);
+            midiConfig.SetValue(mapping, "cc", pair.Value.Controller);
+            midiConfig.SetValue(mapping, "min", pair.Value.Min);
+            midiConfig.SetValue(mapping, "max", pair.Value.Max);
+        }
+        midiConfig.Save(MidiPath);
 
         Modified = false;
-    }
-
-    public Dictionary<string, List<ILiveValue>> SerializeValueList()
-    {
-        return _valueCategories;
     }
 }

@@ -70,6 +70,23 @@ public partial class Optional<T> : IEnumerable<T>
     /// <typeparam name="TResult">The type to return.</typeparam>
     /// <returns>The return value of either the some or none function.</returns>
     public TResult Match<TResult>(Func<T, TResult> some, Func<TResult> none) => _hasValue ? some(_value) : none();
+    
+    /// <summary>
+    /// Calls one of the two provided functions, based on the value of this Optional.
+    /// </summary>
+    /// <param name="some">The function to call if this Optional has a value.</param>
+    /// <param name="none">The function to call if this Optional has no value.</param>
+    public void Match(Action<T> some, Action none)
+    {
+        if (_hasValue)
+        {
+            some(_value);
+        }
+        else
+        {
+            none();
+        }
+    }
 
     /// <summary>
     /// Calls the given function if this Optional has a value.

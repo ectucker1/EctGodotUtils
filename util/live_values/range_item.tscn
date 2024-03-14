@@ -2,15 +2,41 @@
 
 [ext_resource type="Script" path="res://util/live_values/LVRangeItem.cs" id="1_apxt8"]
 
-[node name="RangeItem" type="HBoxContainer"]
+[node name="RangeItem" type="VBoxContainer"]
 offset_right = 404.0
 offset_bottom = 24.0
 script = ExtResource("1_apxt8")
 
-[node name="Slider" type="HSlider" parent="."]
+[node name="SliderNumbox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Slider" type="HSlider" parent="SliderNumbox"]
 custom_minimum_size = Vector2(200, 24)
 layout_mode = 2
 
-[node name="Numbox" type="SpinBox" parent="."]
+[node name="Numbox" type="SpinBox" parent="SliderNumbox"]
 custom_minimum_size = Vector2(200, 24)
 layout_mode = 2
+
+[node name="MIDI" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LearnButton" type="Button" parent="MIDI"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "LEARN"
+
+[node name="ZeroLabel" type="Label" parent="MIDI"]
+layout_mode = 2
+text = "0 ="
+
+[node name="MidiZero" type="SpinBox" parent="MIDI"]
+layout_mode = 2
+
+[node name="MaxLabel" type="Label" parent="MIDI"]
+layout_mode = 2
+text = "127 ="
+
+[node name="MidiMax" type="SpinBox" parent="MIDI"]
+layout_mode = 2
+value = 1.0
