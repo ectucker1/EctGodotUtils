@@ -6,10 +6,7 @@ public partial class LiveValuesOverlay : Node
     
     private LiveValuesModel _model;
     
-    private Tree _categoryTree;
-    private Control _valueContainer;
-
-    private string _lastCategory = "";
+    private TabContainer _categoryContainer;
 
     private double _nextSave = 0.0f;
     
@@ -19,47 +16,23 @@ public partial class LiveValuesOverlay : Node
 
         _model = new LiveValuesModel();
         
-        _categoryTree = FindChild("Categories") as Tree;
-        _valueContainer = FindChild("Values") as Control;
-        
-        _categoryTree.CreateItem();
-        _categoryTree.HideRoot = true;
-        _categoryTree.ItemSelected += () => DisplayCategory(_categoryTree.GetSelected().GetText(0));
-        
-        string firstCategory = null;
+        _categoryContainer = FindChild("Categories") as TabContainer;
+
+        PackedScene categoryScene = GD.Load<PackedScene>("res://util/live_values/live_values_section.tscn");
         foreach (string category in _model.Categories)
         {
-            firstCategory ??= category;
-            TreeItem item = _categoryTree.CreateItem();
-            item.SetText(0, category);
+            Node categorySection = categoryScene.Instantiate();
+            categorySection.Name = category;
+            _categoryContainer.AddChild(categorySection);
+            Node categoryGrid = categorySection.GetChild(0);
+            foreach (ILiveValue value in _model.GetValues(category))
+            {
+                Label label = new Label();
+                label.Text = value.VariableName;
+                categoryGrid.AddChild(label);
+                categoryGrid.AddChild(value.CreateEditorItem(_model));
+            }
         }
-        DisplayCategory(firstCategory);
-    }
-    
-    private void DisplayCategory(string category)
-    {
-        _model.SaveConfig();
-        _model.LoadConfig();
-        
-        while (_valueContainer.GetChildCount() > 2)
-        {
-            _valueContainer.RemoveChild(_valueContainer.GetChild(2));
-        }
-
-        foreach (ILiveValue value in _model.GetValues(category))
-        {
-            AddItem(value);
-        }
-
-        _lastCategory = category;
-    }
-    
-    private void AddItem(ILiveValue value)
-    {
-        Label label = new Label();
-        label.Text = value.VariableName;
-        _valueContainer.AddChild(label);
-        _valueContainer.AddChild(value.CreateEditorItem(_model));
     }
 
     public override void _PhysicsProcess(double delta)

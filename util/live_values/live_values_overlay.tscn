@@ -14,43 +14,8 @@ size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("1_b0ka0")
 
-[node name="Split" type="HSplitContainer" parent="."]
-layout_mode = 0
-anchor_right = 1.0
+[node name="Categories" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = -8.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-split_offset = 8
-
-[node name="Categories" type="Tree" parent="Split"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Scroll" type="ScrollContainer" parent="Split"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="Values" type="GridContainer" parent="Split/Scroll"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-columns = 2
-
-[node name="NameLabel" type="Label" parent="Split/Scroll/Values"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Name"
-
-[node name="ValueLabel" type="Label" parent="Split/Scroll/Values"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Value"
+grow_vertical = 2
