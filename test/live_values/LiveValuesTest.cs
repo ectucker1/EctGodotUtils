@@ -18,10 +18,10 @@ public partial class LiveValuesTest : Sprite2D
         
         Rotate(TEST_REVERSE ? -TEST_SPEED : TEST_SPEED);
         
-        DebugOverlay.AddMessage(this, "Rotation Speed", TEST_SPEED.ToString());
+        //DebugOverlay.AddMessage(this, "Rotation Speed", TEST_SPEED.ToString());
         if (TEST_REVERSE)
         {
-            DebugOverlay.AddMessage(this, "Reverse Rotation", "");
+            //DebugOverlay.AddMessage(this, "Reverse Rotation", "");
         }
     }
 }

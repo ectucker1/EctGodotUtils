@@ -17,7 +17,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-DebugAutoload="*res://base/debug_autoload.tscn"
+DebugOverlayDisplay="*res://util/debug_overlay/debug_overlay_display.tscn"
+InWorldDebugDisplay="*res://util/debug_overlay/in_world_overlay.tscn"
+DebugOverlay="*res://util/debug_overlay/debug_overlay.gd"
 CameraEffects="*res://util/camera/CameraEffects.cs"
 AudioSettings="*res://util/audio/AudioSettings.cs"
 PauseAutoload="*res://base/pause_autoload.tscn"
