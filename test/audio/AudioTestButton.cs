@@ -9,7 +9,7 @@ public partial class AudioTestButton : Button
 	{
 		base._Ready();
 
-		_collection = this.FindChild<IAudioCollection>();
+		_collection = GetChild<IAudioCollection>(0);
 	}
 
 	public override void _Pressed()

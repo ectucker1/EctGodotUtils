@@ -54,7 +54,7 @@ public partial class PauseMenu : Control
             _exitButton.Visible = false;
         }
 
-        _animPlayer = this.FindChild<AnimationPlayer>();
+        _animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         _animPlayer.Connect(SignalNames.ANIMATION_FINISHED, new Callable(this, nameof(_AnimationFinished)));
 
         _mainVolumeRange = FindChild("MainSlider") as Godot.Range;
