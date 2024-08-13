@@ -5,7 +5,7 @@ extends Node
 var text_display = DebugOverlayDisplay.find_child("DebugTextDisplay")
 
 @onready
-var in_world_display = InWorldOverlay
+var in_world_display = InWorldDebugDisplay
 
 
 func _input(event: InputEvent) -> void:
