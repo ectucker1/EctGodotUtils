@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+LiveValues="*res://util/live_values/live_values.gd"
 DebugOverlayDisplay="*res://util/debug_overlay/debug_overlay_display.tscn"
 InWorldDebugDisplay="*res://util/debug_overlay/in_world_overlay.tscn"
 DebugOverlay="*res://util/debug_overlay/debug_overlay.gd"

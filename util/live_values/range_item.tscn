@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://buk6obug5nj8a"]
 
-[ext_resource type="Script" path="res://util/live_values/LVRangeItem.cs" id="1_apxt8"]
+[ext_resource type="Script" path="res://util/live_values/lv_range_item.gd" id="1_yo7hi"]
 
 [node name="RangeItem" type="VBoxContainer"]
 offset_right = 404.0
 offset_bottom = 24.0
-script = ExtResource("1_apxt8")
+script = ExtResource("1_yo7hi")
 
 [node name="SliderNumbox" type="HBoxContainer" parent="."]
 layout_mode = 2
