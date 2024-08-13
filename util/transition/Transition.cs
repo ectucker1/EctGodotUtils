@@ -20,7 +20,7 @@ public partial class Transition : Control
     {
         base._Ready();
 
-        _anim = this.FindChild<AnimationPlayer>();
+        _anim = GetNode<AnimationPlayer>("AnimationPlayer");
         _instance = this;
     }
 
