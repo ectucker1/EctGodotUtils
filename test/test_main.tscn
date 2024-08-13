@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dh8m71w28xryn"]
 
-[ext_resource type="Script" path="res://test/TestSceneButton.cs" id="1"]
+[ext_resource type="Script" path="res://test/test_scene_button.gd" id="1_q040t"]
 
 [node name="TestMain" type="Control"]
 layout_mode = 3
@@ -18,39 +18,39 @@ offset_right = 12.0
 [node name="SceneButton1" type="Button" parent="VBox"]
 layout_mode = 2
 text = "res://test/async_routine/async_routine_test.tscn"
-script = ExtResource("1")
+script = ExtResource("1_q040t")
 
 [node name="SceneButton2" type="Button" parent="VBox"]
 layout_mode = 2
 text = "res://test/audio/audio_test.tscn"
-script = ExtResource("1")
+script = ExtResource("1_q040t")
 
 [node name="SceneButton3" type="Button" parent="VBox"]
 layout_mode = 2
 text = "res://test/camera/camera_test.tscn"
-script = ExtResource("1")
+script = ExtResource("1_q040t")
 
 [node name="SceneButton4" type="Button" parent="VBox"]
 layout_mode = 2
 text = "res://test/live_values/live_values_test.tscn"
-script = ExtResource("1")
+script = ExtResource("1_q040t")
 
 [node name="SceneButton5" type="Button" parent="VBox"]
 layout_mode = 2
 text = "res://test/overlay/overlay_test.tscn"
-script = ExtResource("1")
+script = ExtResource("1_q040t")
 
 [node name="SceneButton6" type="Button" parent="VBox"]
 layout_mode = 2
 text = "res://test/procedural_animation/procedural_animation_test.tscn"
-script = ExtResource("1")
+script = ExtResource("1_q040t")
 
 [node name="SceneButton7" type="Button" parent="VBox"]
 layout_mode = 2
 text = "res://test/render_targets/render_target_test.tscn"
-script = ExtResource("1")
+script = ExtResource("1_q040t")
 
 [node name="SceneButton8" type="Button" parent="VBox"]
 layout_mode = 2
 text = "res://test/tracking_areas/tracking_areas_test.tscn"
-script = ExtResource("1")
+script = ExtResource("1_q040t")

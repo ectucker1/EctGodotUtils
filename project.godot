@@ -24,7 +24,7 @@ DebugOverlay="*res://util/debug_overlay/debug_overlay.gd"
 CameraEffects="*res://util/camera/CameraEffects.cs"
 AudioSettings="*res://util/audio/AudioSettings.cs"
 PauseAutoload="*res://base/pause_autoload.tscn"
-TransitionAutoload="*res://base/transition_autoload.tscn"
+TransitionLayer="*res://util/transition/transition_layer.tscn"
 
 [display]
 
