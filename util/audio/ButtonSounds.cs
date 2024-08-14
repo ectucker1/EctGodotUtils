@@ -7,15 +7,15 @@ using System;
 /// </summary>
 public partial class ButtonSounds : Node
 {
-	private AudioStreamProxy _hoverSound;
-	private AudioStreamProxy _pressedSound;
+	private AudioStreamPlayer _hoverSound;
+	private AudioStreamPlayer _pressedSound;
 	
 	public override void _Ready()
 	{
 		base._Ready();
 
-		_hoverSound = new AudioStreamProxy(GetNode("Hover"));
-		_pressedSound = new AudioStreamProxy(GetNode("Press"));
+		_hoverSound = GetNode<AudioStreamPlayer>("Hover");
+		_pressedSound = GetNode<AudioStreamPlayer>("Press");
 
 		if (GetParent() is BaseButton button)
 		{
