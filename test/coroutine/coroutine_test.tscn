@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bb7ss664hpe7d"]
 
-[ext_resource type="Script" path="res://test/async_routine/AsyncRoutineTest.cs" id="1"]
-[ext_resource type="Texture2D" uid="uid://bmgfxim7pxr3u" path="res://icon.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bmgfxim7pxr3u" path="res://icon.png" id="1_14thx"]
+[ext_resource type="Script" path="res://test/coroutine/coroutine_test.gd" id="2_gs0c5"]
 
 [sub_resource type="Animation" id="1"]
 length = 0.001
@@ -43,8 +43,8 @@ _data = {
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(419, 242)
-texture = ExtResource("2")
-script = ExtResource("1")
+texture = ExtResource("1_14thx")
+script = ExtResource("2_gs0c5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 root_node = NodePath("../..")
