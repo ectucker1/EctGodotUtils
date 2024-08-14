@@ -17,7 +17,7 @@ offset_right = 12.0
 
 [node name="SceneButton1" type="Button" parent="VBox"]
 layout_mode = 2
-text = "res://test/async_routine/async_routine_test.tscn"
+text = "res://test/coroutine/coroutine_test.tscn"
 script = ExtResource("1_q040t")
 
 [node name="SceneButton2" type="Button" parent="VBox"]
