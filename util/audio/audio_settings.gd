@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 
 
 func save_config() -> void:
-	if OS.get_name() != "HTML5":
+	if OS.get_name() != "Web":
 		var config = ConfigFile.new()
 		config.set_value(SECTION, MAIN_VOLUME_SETTING, main_volume)
 		config.set_value(SECTION, EFFECTS_VOLUME_SETTING, effects_volume)
@@ -61,7 +61,7 @@ func save_config() -> void:
 	unsaved = false
 
 func load_config() -> void:
-	if OS.get_name() != "HTML5":
+	if OS.get_name() != "Web":
 		var config = ConfigFile.new()
 		var error = config.load(FILE_PATH)
 		if error == OK:

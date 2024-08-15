@@ -9,7 +9,7 @@ extends AudioStreamCollection
 @export var volume_offset_range := 0.0
 
 
-func play(from: float = 1.0):
+func play(from: float = 0.0):
 	stop()
 	
 	var pick: Node = streams.pick_random()

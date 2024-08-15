@@ -29,7 +29,7 @@ func _ready() -> void:
 	resume_button.pressed.connect(toggle_shown)
 	
 	exit_button.pressed.connect(exit)
-	if OS.get_name() == "HTML5":
+	if OS.get_name() == "Web":
 		exit_button.visible = false
 	
 	anim_player.animation_finished.connect(anim_finished)
