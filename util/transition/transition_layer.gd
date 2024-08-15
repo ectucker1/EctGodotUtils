@@ -15,7 +15,7 @@ func transition_to(scene: String) -> void:
 		next = scene
 		
 		get_tree().paused = true
-		# TODO disable pasuse menu
+		PauseMenu.enabled = false
 		
 		anim_player.play("Out")
 		await anim_player.animation_finished
@@ -25,5 +25,5 @@ func transition_to(scene: String) -> void:
 		anim_player.play("In")
 		await anim_player.animation_finished
 		
-		get_tree().paused = true
-		# TODO enable pasuse menu
+		get_tree().paused = false
+		PauseMenu.enabled = true

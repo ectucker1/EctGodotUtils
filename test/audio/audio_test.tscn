@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://qx6pw1hn4x3g" path="res://base/button_sounds.tscn" id="15"]
 
 [node name="AudioTest" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,6 +63,7 @@ pitch_offset = 0.05
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="List/CoinPitched/PitchedSequence"]
 stream = ExtResource("7")
+bus = &"Effects"
 
 [node name="ButtonSounds" parent="List/CoinPitched" instance=ExtResource("15")]
 
@@ -114,4 +116,5 @@ bus = &"Effects"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1")
+autoplay = true
 bus = &"Music"
