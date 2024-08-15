@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cnba66c36onfy"]
 
-[ext_resource type="Script" path="res://test/camera/CameraTest.cs" id="1"]
-[ext_resource type="Script" path="res://util/camera/EffectsCamera2D.cs" id="2"]
+[ext_resource type="Script" path="res://test/camera/camera_test.gd" id="1_2asfd"]
+[ext_resource type="Script" path="res://util/camera/effects_camera_2d.gd" id="2_v2o8y"]
 
 [sub_resource type="FastNoiseLite" id="1"]
 
@@ -11,10 +11,10 @@ height = 2048
 noise = SubResource("1")
 
 [node name="CameraTest" type="Node2D"]
-script = ExtResource("1")
+script = ExtResource("1_2asfd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("2")
+script = ExtResource("2_v2o8y")
