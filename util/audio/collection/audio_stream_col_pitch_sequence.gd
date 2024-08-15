@@ -14,7 +14,7 @@ var time_since_played := 0.0
 var next_play := 0
 
 
-func play(from: float = 1.0):
+func play(from: float = 0.0):
 	time_since_played = 0.0
 	
 	var next = streams[0]
