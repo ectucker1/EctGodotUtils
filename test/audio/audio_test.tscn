@@ -14,7 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://ble1qcapx5eqg" path="res://test/audio/1.ogg" id="12"]
 [ext_resource type="AudioStream" uid="uid://ke5vao2jugff" path="res://test/audio/3.ogg" id="13"]
 [ext_resource type="AudioStream" uid="uid://dd415jxdokdry" path="res://test/audio/2.ogg" id="14"]
-[ext_resource type="PackedScene" uid="uid://qx6pw1hn4x3g" path="res://base/button_sounds.tscn" id="15"]
+[ext_resource type="PackedScene" uid="uid://qx6pw1hn4x3g" path="res://util/audio/button_sounds.tscn" id="15"]
 
 [node name="AudioTest" type="Control"]
 process_mode = 3

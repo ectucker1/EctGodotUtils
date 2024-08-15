@@ -25,6 +25,7 @@ AudioSettings="*res://util/audio/audio_settings.gd"
 CameraEffects="*res://util/camera/camera_effects.gd"
 PauseMenu="*res://util/pause_menu/pause_menu.tscn"
 TransitionLayer="*res://util/transition/transition_layer.tscn"
+GlobalSounds="*res://util/audio/global_sounds.tscn"
 
 [display]
 
