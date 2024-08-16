@@ -9,19 +9,37 @@ const CONFIG_SECTION := "LiveValues"
 
 # List of all bound values
 var value_bindings := []
-# Maps from values to MIDI controller info
+# Maps from value names to MIDI controller info
 var value_midi := {}
 
+# Values which existed in the loaded config file, but were not yet bound
+# These will be applied to any values which are bound later
+var delay_load_values := {}
 
 var modified := false
 var next_save := 0.0
 
 
+signal value_bound(value: Object)
+
+
 func bind_range_value(name: String, getter: Callable, setter: Callable, min: float, max: float):
-	value_bindings.push_back(LVRange.new(self, name, getter, setter, min, max))
+	var value = LVRange.new(self, name, getter, setter, min, max)
+	value_bindings.push_back(value)
+	
+	if delay_load_values.has(name):
+		value.set_val(delay_load_values.get(name))
+	
+	value_bound.emit(value)
 
 func bind_bool_value(name: String, getter: Callable, setter: Callable):
-	value_bindings.push_back(LVBool.new(self, name, getter, setter))
+	var value = LVBool.new(self, name, getter, setter)
+	value_bindings.push_back(value)
+	
+	if delay_load_values.has(name):
+		value.set_val(delay_load_values.get(name))
+	
+	value_bound.emit(value)
 
 
 func get_values() -> Array:
@@ -52,6 +70,8 @@ func load_config() -> void:
 				var val = get_value(name)
 				if val:
 					val.set_val(config.get_value(CONFIG_SECTION, name, val.get_val()))
+				else:
+					delay_load_values[name] = config.get_value(CONFIG_SECTION, name)
 	
 	if FileAccess.file_exists(MIDI_PATH):
 		var midi_config = ConfigFile.new()
@@ -61,9 +81,7 @@ func load_config() -> void:
 				var controller = midi_config.get_value(name, "cc")
 				var min = midi_config.get_value(name, "min")
 				var max = midi_config.get_value(name, "max")
-				var val = get_value(name)
-				if val is LVRange:
-					put_midi(val, MIDIValueChannel.new(channel, controller, min, max))
+				value_midi[name] = MIDIValueChannel.new(channel, controller, min, max)
 
 func save_config() -> void:
 	var config = ConfigFile.new()
