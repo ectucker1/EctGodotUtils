@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cmm3edhyqq5s5"]
 
-[ext_resource type="Script" path="res://util/transition/transition_layer.gd" id="1_vqva3"]
+[ext_resource type="Script" uid="uid://bylror3fsrf13" path="res://util/transition/transition_layer.gd" id="1_vqva3"]
 
 [sub_resource type="Animation" id="3"]
 resource_name = "In"
@@ -49,9 +49,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4u515"]
 _data = {
-"In": SubResource("3"),
-"Out": SubResource("1"),
-"RESET": SubResource("2")
+&"In": SubResource("3"),
+&"Out": SubResource("1"),
+&"RESET": SubResource("2")
 }
 
 [node name="TransitionLayer" type="Node"]

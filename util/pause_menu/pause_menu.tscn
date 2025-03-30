@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d122i3aho8gv3"]
 
-[ext_resource type="Script" path="res://util/pause_menu/pause_menu.gd" id="1_8qw3a"]
+[ext_resource type="Script" uid="uid://dvt5rtb0gnccq" path="res://util/pause_menu/pause_menu.gd" id="1_8qw3a"]
 
 [sub_resource type="Animation" id="2"]
 resource_name = "Hide"
@@ -85,9 +85,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qikg4"]
 _data = {
-"Hide": SubResource("2"),
-"RESET": SubResource("3"),
-"Show": SubResource("1")
+&"Hide": SubResource("2"),
+&"RESET": SubResource("3"),
+&"Show": SubResource("1")
 }
 
 [node name="PauseMenu" type="Node"]

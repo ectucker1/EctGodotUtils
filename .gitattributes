@@ -14,6 +14,8 @@
 *.tres text eol=lf
 *.tscn text eol=lf
 *.import text eol=lf
+*.uid text eol=lf
+*.cfg text eol=lf
 
 # Shell scripts
 *.bash text eol=lf
@@ -26,8 +28,13 @@
 
 # Misc text files
 *.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.xml text eol=lf
 *.puml text eol=lf
 *.txt text eol=lf
+*.ini text eol=lf
+*.html text diff=html eol=lf
 *.md text diff=markdown eol=lf
 
 # Images
@@ -38,6 +45,9 @@
 *.hdr filter=lfs diff=lfs merge=lfs -text
 *.exr filter=lfs diff=lfs merge=lfs -text
 *.tga filter=lfs diff=lfs merge=lfs -text
+*.dds filter=lfs diff=lfs merge=lfs -text
+*.hdri filter=lfs diff=lfs merge=lfs -text
+*.svg text eol=lf
 
 # Asperite Files
 *.aseprite filter=lfs diff=lfs merge=lfs -text
@@ -47,6 +57,7 @@
 *.wav filter=lfs diff=lfs merge=lfs -text
 *.mp3 filter=lfs diff=lfs merge=lfs -text
 *.ogg filter=lfs diff=lfs merge=lfs -text
+*.oga filter=lfs diff=lfs merge=lfs -text
 *.flac filter=lfs diff=lfs merge=lfs -text
 
 # 3D-Models
@@ -56,3 +67,13 @@
 *.obj filter=lfs diff=lfs merge=lfs -text
 *.blend filter=lfs diff=lfs merge=lfs -text
 *.fbx filter=lfs diff=lfs merge=lfs -text
+*.dae filter=lfs diff=lfs merge=lfs -text
+
+# Videos
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.webm filter=lfs diff=lfs merge=lfs -text
+*.ogv filter=lfs diff=lfs merge=lfs -text
+
+# Font Files
+*.ttf filter=lfs diff=lfs merge=lfs -text
+*.otf filter=lfs diff=lfs merge=lfs -text

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bx2w00n8i2clv"]
 
 [ext_resource type="Texture2D" uid="uid://bmgfxim7pxr3u" path="res://icon.png" id="1"]
-[ext_resource type="Script" path="res://test/live_values/live_values_test.gd" id="2_6kbvf"]
+[ext_resource type="Script" uid="uid://bxa4esokdp3ph" path="res://test/live_values/live_values_test.gd" id="2_6kbvf"]
 
 [node name="LiveValuesTest" type="Node2D"]
 
