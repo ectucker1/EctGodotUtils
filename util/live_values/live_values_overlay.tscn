@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bvof41dbvkdfh"]
 
-[ext_resource type="Script" path="res://util/live_values/live_values_overlay.gd" id="1_fefmt"]
+[ext_resource type="Script" uid="uid://vy35u75tmnch" path="res://util/live_values/live_values_overlay.gd" id="1_fefmt"]
 
 [node name="LiveValuesOverlay" type="Control"]
 layout_mode = 3

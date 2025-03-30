@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkvyunbav70ve"]
 
 [ext_resource type="FontFile" uid="uid://cc8ac0b532jxa" path="res://util/debug_overlay/inconsolata.ttf" id="2"]
-[ext_resource type="Script" path="res://util/debug_overlay/debug_text_display.gd" id="2_f1nmq"]
+[ext_resource type="Script" uid="uid://b8qpmcimyuk8o" path="res://util/debug_overlay/debug_text_display.gd" id="2_f1nmq"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("2"), ExtResource("2")])

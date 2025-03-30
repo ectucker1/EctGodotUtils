@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cnba66c36onfy"]
 
-[ext_resource type="Script" path="res://test/camera/camera_test.gd" id="1_2asfd"]
-[ext_resource type="Script" path="res://util/camera/effects_camera_2d.gd" id="2_v2o8y"]
+[ext_resource type="Script" uid="uid://vjnt8vtuxulg" path="res://test/camera/camera_test.gd" id="1_2asfd"]
+[ext_resource type="Script" uid="uid://cu5whb37rt5d8" path="res://util/camera/effects_camera_2d.gd" id="2_v2o8y"]
 
 [sub_resource type="FastNoiseLite" id="1"]
 

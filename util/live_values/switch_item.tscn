@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cw1r5d1h0j856"]
 
-[ext_resource type="Script" path="res://util/live_values/lv_switch_item.gd" id="1_55sdo"]
+[ext_resource type="Script" uid="uid://jkvjvo56olje" path="res://util/live_values/lv_switch_item.gd" id="1_55sdo"]
 
 [node name="SwitchTemplate" type="CheckButton"]
 offset_left = 204.0

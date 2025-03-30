@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://duwjehwcktkih"]
 
-[ext_resource type="Script" path="res://util/animation/procedural/verlet_chain.gd" id="2_mmc28"]
+[ext_resource type="Script" uid="uid://du318qap8kosn" path="res://util/animation/procedural/verlet_chain.gd" id="2_mmc28"]
 [ext_resource type="Texture2D" uid="uid://bmgfxim7pxr3u" path="res://icon.png" id="3"]
 
 [sub_resource type="Animation" id="1"]
@@ -37,8 +37,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6j40d"]
 _data = {
-"Loop": SubResource("1"),
-"RESET": SubResource("2")
+&"Loop": SubResource("1"),
+&"RESET": SubResource("2")
 }
 
 [node name="ProceduralAnimationTest" type="Node2D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://buk6obug5nj8a"]
 
-[ext_resource type="Script" path="res://util/live_values/lv_range_item.gd" id="1_yo7hi"]
+[ext_resource type="Script" uid="uid://d4jj65t5jf4m5" path="res://util/live_values/lv_range_item.gd" id="1_yo7hi"]
 
 [node name="RangeItem" type="VBoxContainer"]
 offset_right = 404.0
