@@ -44,13 +44,3 @@ script = ExtResource("1_q040t")
 layout_mode = 2
 text = "res://test/procedural_animation/procedural_animation_test.tscn"
 script = ExtResource("1_q040t")
-
-[node name="SceneButton7" type="Button" parent="VBox"]
-layout_mode = 2
-text = "res://test/render_targets/render_target_test.tscn"
-script = ExtResource("1_q040t")
-
-[node name="SceneButton8" type="Button" parent="VBox"]
-layout_mode = 2
-text = "res://test/tracking_areas/tracking_areas_test.tscn"
-script = ExtResource("1_q040t")
