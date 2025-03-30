@@ -40,6 +40,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="EctGodotUtils"
 
+[gui]
+
+theme/custom="uid://cejyvtyo48vcw"
+
 [input]
 
 debug_show={
