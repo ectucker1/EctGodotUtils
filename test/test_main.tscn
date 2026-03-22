@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dh8m71w28xryn"]
+[gd_scene format=3 uid="uid://dh8m71w28xryn"]
 
-[ext_resource type="Script" uid="uid://by6cdoqkrsht" path="res://test/test_scene_button.gd" id="1_q040t"]
+[ext_resource type="Script" uid="uid://d07r01afhhqcd" path="res://test/generate_test_buttons.gd" id="1_3d8c4"]
 
-[node name="TestMain" type="Control"]
+[node name="TestMain" type="Control" unique_id=29098329]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,37 +10,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBox" type="VBoxContainer" parent="."]
-layout_mode = 0
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1856512399]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 12.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="SceneButton1" type="Button" parent="VBox"]
+[node name="TestSceneList" type="VBoxContainer" parent="CenterContainer" unique_id=177813697]
 layout_mode = 2
-text = "res://test/coroutine/coroutine_test.tscn"
-script = ExtResource("1_q040t")
-
-[node name="SceneButton2" type="Button" parent="VBox"]
-layout_mode = 2
-text = "res://test/audio/audio_test.tscn"
-script = ExtResource("1_q040t")
-
-[node name="SceneButton3" type="Button" parent="VBox"]
-layout_mode = 2
-text = "res://test/camera/camera_test.tscn"
-script = ExtResource("1_q040t")
-
-[node name="SceneButton4" type="Button" parent="VBox"]
-layout_mode = 2
-text = "res://test/live_values/live_values_test.tscn"
-script = ExtResource("1_q040t")
-
-[node name="SceneButton5" type="Button" parent="VBox"]
-layout_mode = 2
-text = "res://test/overlay/overlay_test.tscn"
-script = ExtResource("1_q040t")
-
-[node name="SceneButton6" type="Button" parent="VBox"]
-layout_mode = 2
-text = "res://test/procedural_animation/procedural_animation_test.tscn"
-script = ExtResource("1_q040t")
+script = ExtResource("1_3d8c4")
