@@ -1,11 +1,12 @@
-﻿# ECT Godot Utils
+﻿# Ella's Godot Utils
 
-This repository contains common utilities I tend to rewrite for Godot game projects,
-particularly game jams.
+This repository contains common utilities I tend to rewrite for Godot game projects, particularly game jams.
 
 They are provided under a MIT license for anyone else who may find them useful.
 
-They are written in GDscript and currently target Godot 4.3.
+They are written in GDScript and currently target Godot 4.6.
+Some of the utilities have older versions in C#.
+See the [3.x-mono](https://github.com/ectucker1/EctGodotUtils/tree/3.x-mono) or [4.x-dotnet](https://github.com/ectucker1/EctGodotUtils/tree/4.x-dotnet) branches for these.
 
 Some examples of utilities included (not comprehensive):
 - Debug overlay for printing text and displaying vectors
@@ -16,7 +17,7 @@ Some examples of utilities included (not comprehensive):
 - Audio sequences
 - Pause menus
 
-Example usages of these can be found in the `test` folder.
+Example scenes using these can be found in the `test` folder.
 
 ## Installation in Existing Project
 
