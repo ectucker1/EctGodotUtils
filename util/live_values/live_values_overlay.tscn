@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bvof41dbvkdfh"]
 
-[ext_resource type="Script" path="res://util/live_values/LiveValuesOverlay.cs" id="1_b0ka0"]
+[ext_resource type="Script" uid="uid://vy35u75tmnch" path="res://util/live_values/live_values_overlay.gd" id="1_fefmt"]
 
 [node name="LiveValuesOverlay" type="Control"]
 layout_mode = 3
@@ -12,10 +12,18 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
-script = ExtResource("1_b0ka0")
+script = ExtResource("1_fefmt")
 
-[node name="Categories" type="TabContainer" parent="."]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-grow_vertical = 2
+[node name="Grid" type="GridContainer" parent="."]
+layout_mode = 0
+columns = 2
+
+[node name="NameLabel" type="Label" parent="Grid"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Name"
+
+[node name="ValueLabel" type="Label" parent="Grid"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Value"

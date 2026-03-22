@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bx2w00n8i2clv"]
 
 [ext_resource type="Texture2D" uid="uid://bmgfxim7pxr3u" path="res://icon.png" id="1"]
-[ext_resource type="Script" path="res://test/live_values/LiveValuesTest.cs" id="2"]
+[ext_resource type="Script" uid="uid://bxa4esokdp3ph" path="res://test/live_values/live_values_test.gd" id="2_6kbvf"]
 
 [node name="LiveValuesTest" type="Node2D"]
 
@@ -9,4 +9,4 @@
 position = Vector2(886, 457)
 scale = Vector2(8, 8)
 texture = ExtResource("1")
-script = ExtResource("2")
+script = ExtResource("2_6kbvf")

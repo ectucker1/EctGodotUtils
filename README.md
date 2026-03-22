@@ -1,25 +1,37 @@
-﻿# ECT Godot Utils
+﻿# Ella's Godot Utils
 
-This repository contains a lot of common utilities I tend to rewrite for Godot game projects.
-They are all written in C# and thus exclusive to the Mono distribution of Godot.
-They are currently in the process of being converted to Godot 4.0,
-see the [3.x](https://github.com/ectucker1/EctGodotUtils/tree/3.x) branch for the 3.0 version.
+This repository contains common utilities I tend to rewrite for Godot game projects, particularly game jams.
+
+They are provided under a MIT license for anyone else who may find them useful.
+
+They are written in GDScript and currently target Godot 4.6.
+Some of the utilities have older versions in C#.
+See the [3.x-mono](https://github.com/ectucker1/EctGodotUtils/tree/3.x-mono) or [4.x-dotnet](https://github.com/ectucker1/EctGodotUtils/tree/4.x-dotnet) branches for these.
 
 Some examples of utilities included (not comprehensive):
-- State machines
-- LiveValues plugin for changing constants using reflection
-- Debug overlays
-- Verlet animations
-- C# Optional Type
-- Screenshake
-- Coroutines using aync functions
+- Debug overlay for printing text and displaying vectors
+- LiveValues overlay for changing constants
+- Screenshake, hitstop, and camera kickback
+- Verlet physics for hair and rope
+- Scene transitions
+- Audio sequences
+- Pause menus
+
+Example scenes using these can be found in the `test` folder.
 
 ## Installation in Existing Project
 
-1. Copy the `addons` and `util` folders into your project (you can rename util if you want).
-2. Build your Godot C# project.
-3. Enable the LiveValues plugin.
-4. Add the LiveValuesClient script as a autoload.
+1. Copy the `util` folder into your project (you can rename util if you want).
+2. Add the following as Godot Autoloads, in order:
+    1. LiveValues (`res://util/live_values/live_values.gd`)
+    2. DebugOverlayDisplay (`res://util/debug_overlay/debug_overlay_display.tscn`)
+    3. InWorldDebugDisplay (`res://util/debug_overlay/in_world_overlay.tscn`)
+    4. DebugOverlay (`res://util/debug_overlay/debug_overlay.tscn`)
+    5. AudioSettings (`res://util/audio/audio_settings.gd`)
+    6. CameraEffects (`res://util/camera/camera_effects.gd`)
+    7. PauseMenu (`res://util/pause_menu/pause_menu.tscn`)
+    8. TransitionLayer (`res://util/transition/transition_layer.tscn`)
+    9. GlobalSounds (`res://util/audio/global_sounds.tscn`)
 
 ## Use as Template
 
