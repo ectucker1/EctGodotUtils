@@ -7,7 +7,7 @@ var sprite_1 := $Sprite1
 var sprite_2 := $Sprite2
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	DebugOverlay.add_message(self, "Sprite2D 1 Position", str(sprite_1.global_position), Color.AQUA)
 	if randi() % 120 == 0:
 		DebugOverlay.add_message(self, "Event", "Something Happened", Color.FUCHSIA, 1, 0.5)

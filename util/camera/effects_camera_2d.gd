@@ -4,5 +4,5 @@ extends Camera2D
 ## Should be extended for more advanced camera behavior.
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	offset = CameraEffects.get_offset()

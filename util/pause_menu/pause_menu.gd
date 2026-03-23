@@ -52,8 +52,8 @@ func toggle_shown() -> void:
 		else:
 			anim_player.play("Hide")
 
-func anim_finished(name: String) -> void:
-	if name == "Hide":
+func anim_finished(anim_name: String) -> void:
+	if anim_name == "Hide":
 		get_tree().paused = false
 		shown = false
 
