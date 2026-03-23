@@ -37,7 +37,7 @@ func offset_volume(stream, amount: float) -> void:
 		stream.volume_db = stream.get_meta("original_volume_db") + amount
 
 
-func play(from: float = 0.0) -> void:
+func play(_from: float = 0.0) -> void:
 	pass
 
 func play_if_not():

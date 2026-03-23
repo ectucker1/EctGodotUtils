@@ -9,10 +9,10 @@ class DebugVector:
 	var vector: Vector2
 	var color: Color
 
-	func _init(from: Vector2, vector: Vector2, color: Color) -> void:
-		self.from = from
-		self.vector = vector
-		self.color = color
+	func _init(p_from: Vector2, p_vector: Vector2, p_color: Color) -> void:
+		self.from = p_from
+		self.vector = p_vector
+		self.color = p_color
 	
 	func draw(canvas: CanvasItem) -> void:
 		canvas.draw_line(from, from + vector, color, 5)
@@ -22,9 +22,9 @@ class DebugPoint:
 	var point: Vector2
 	var color: Color
 	
-	func _init(point: Vector2, color: Color) -> void:
-		self.point = point
-		self.color = color
+	func _init(p_point: Vector2, p_color: Color) -> void:
+		self.point = p_point
+		self.color = p_color
 	
 	func draw(canvas: CanvasItem) -> void:
 		canvas.draw_circle(point, 8, color)
@@ -51,5 +51,5 @@ func _draw() -> void:
 	drawables.clear()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	visible = DebugOverlayDisplay.visible

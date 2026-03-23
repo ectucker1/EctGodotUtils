@@ -11,7 +11,7 @@ func _node_spawned(node: Node) -> void:
 	elif node is Slider:
 		node.mouse_entered.connect(_play_default_hover)
 		node.drag_started.connect(_play_default_pressed)
-		node.drag_ended.connect(func(value_changed: bool): _play_default_pressed())
+		node.drag_ended.connect(func(_value_changed: bool): _play_default_pressed())
 
 func _play_default_hover():
 	GlobalSounds.play("Hover")

@@ -16,11 +16,11 @@ class VerletPoint:
 	
 	var target: Node2D
 	
-	func _init(position: Vector2, target: Node2D, locked := false) -> void:
-		self.position = position
-		self.old_position = position
-		self.target = target
-		self.locked = locked
+	func _init(p_position: Vector2, p_target: Node2D, p_locked := false) -> void:
+		self.position = p_position
+		self.old_position = p_position
+		self.target = p_target
+		self.locked = p_locked
 
 class VerletStick:
 	var point_1: VerletPoint
@@ -28,10 +28,10 @@ class VerletStick:
 	
 	var length: float
 	
-	func _init(point_1: VerletPoint, point_2: VerletPoint) -> void:
-		self.point_1 = point_1
-		self.point_2 = point_2
-		self.length = (point_1.position - point_2.position).length()
+	func _init(p_point_1: VerletPoint, p_point_2: VerletPoint) -> void:
+		self.point_1 = p_point_1
+		self.point_2 = p_point_2
+		self.length = (p_point_1.position - p_point_2.position).length()
 
 
 var last_position: Vector2
@@ -78,7 +78,7 @@ func apply_forces(delta: float) -> void:
 			point.position += vel
 			point.position += Vector2.DOWN * gravity * delta * delta
 
-func apply_constraints(delta: float) -> void:
+func apply_constraints(_delta: float) -> void:
 	for i in range(0, 50):
 		for stick in sticks:
 			var stick_center = (stick.point_1.position + stick.point_2.position) * 0.5

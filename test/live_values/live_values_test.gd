@@ -6,7 +6,7 @@ var test_speed := 0.5
 var test_reverse := false
 
 func _process(delta: float) -> void:
-	rotate(-test_speed if test_reverse else test_speed)
+	rotate(-test_speed * delta if test_reverse else test_speed * delta)
 	DebugOverlay.add_message(self, "Rotation Speed", str(test_speed));
 	if (test_reverse):
 		DebugOverlay.add_message(self, "Reverse Rotation", "");
