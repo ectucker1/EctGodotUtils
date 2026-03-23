@@ -21,15 +21,15 @@ config/icon="res://icon.png"
 
 [autoload]
 
-LiveValues="*res://util/live_values/live_values.gd"
 DebugOverlayDisplay="*res://util/debug_overlay/debug_overlay_display.tscn"
 InWorldDebugDisplay="*res://util/debug_overlay/in_world_overlay.tscn"
 DebugOverlay="*res://util/debug_overlay/debug_overlay.gd"
 AudioSettings="*res://util/audio/audio_settings.gd"
+GlobalSounds="*res://util/audio/global_sounds.tscn"
+UiSoundConnector="*uid://c5pshemmbfsxc"
 CameraEffects="*res://util/camera/camera_effects.gd"
 PauseMenu="*res://util/pause_menu/pause_menu.tscn"
 TransitionLayer="*res://util/transition/transition_layer.tscn"
-GlobalSounds="*res://util/audio/global_sounds.tscn"
 
 [display]
 

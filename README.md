@@ -22,15 +22,15 @@ Example scenes using these can be found in the `test` folder.
 
 1. Copy the `util` folder into your project (you can rename util if you want).
 2. Add the following as Godot Autoloads, in order:
-    1. LiveValues (`res://util/live_values/live_values.gd`)
-    2. DebugOverlayDisplay (`res://util/debug_overlay/debug_overlay_display.tscn`)
-    3. InWorldDebugDisplay (`res://util/debug_overlay/in_world_overlay.tscn`)
-    4. DebugOverlay (`res://util/debug_overlay/debug_overlay.tscn`)
-    5. AudioSettings (`res://util/audio/audio_settings.gd`)
-    6. CameraEffects (`res://util/camera/camera_effects.gd`)
-    7. PauseMenu (`res://util/pause_menu/pause_menu.tscn`)
-    8. TransitionLayer (`res://util/transition/transition_layer.tscn`)
-    9. GlobalSounds (`res://util/audio/global_sounds.tscn`)
+    1. DebugOverlayDisplay (`res://util/debug_overlay/debug_overlay_display.tscn`)
+    2. InWorldDebugDisplay (`res://util/debug_overlay/in_world_overlay.tscn`)
+    3. DebugOverlay (`res://util/debug_overlay/debug_overlay.tscn`)
+    4. AudioSettings (`res://util/audio/audio_settings.gd`)
+    5. GlobalSounds (`res://util/audio/global_sounds.tscn`)
+    5. UISoundConnector (`res://util/audio/ui_sound_connector.tscn`)
+    5. CameraEffects (`res://util/camera/camera_effects.gd`)
+    6. PauseMenu (`res://util/pause_menu/pause_menu.tscn`)
+    7. TransitionLayer (`res://util/transition/transition_layer.tscn`)
 
 ## Use as Template
 
