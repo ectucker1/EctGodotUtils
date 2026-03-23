@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://84enmh4oed4c"]
+[gd_scene format=3 uid="uid://84enmh4oed4c"]
 
 [ext_resource type="AudioStream" uid="uid://dvfvo1021qkcl" path="res://test/audio/test_music.ogg" id="1"]
 [ext_resource type="Script" uid="uid://6b1dmsts2jyk" path="res://test/audio/audio_test_button.gd" id="1_6ebyl"]
@@ -14,9 +14,8 @@
 [ext_resource type="AudioStream" uid="uid://ble1qcapx5eqg" path="res://test/audio/1.ogg" id="12"]
 [ext_resource type="AudioStream" uid="uid://ke5vao2jugff" path="res://test/audio/3.ogg" id="13"]
 [ext_resource type="AudioStream" uid="uid://dd415jxdokdry" path="res://test/audio/2.ogg" id="14"]
-[ext_resource type="PackedScene" uid="uid://qx6pw1hn4x3g" path="res://util/audio/button_sounds.tscn" id="15"]
 
-[node name="AudioTest" type="Control"]
+[node name="AudioTest" type="Control" unique_id=334948682]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -25,96 +24,88 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="List" type="VBoxContainer" parent="."]
+[node name="List" type="VBoxContainer" parent="." unique_id=297965168]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 0
 anchor_bottom = 1.0
 offset_right = 12.0
 alignment = 1
 
-[node name="StepRandom" type="Button" parent="List"]
+[node name="StepRandom" type="Button" parent="List" unique_id=1177842557]
 layout_mode = 2
 text = "Step Random"
 script = ExtResource("1_6ebyl")
 
-[node name="Randomizer" type="Node" parent="List/StepRandom"]
+[node name="Randomizer" type="Node" parent="List/StepRandom" unique_id=376608009]
 script = ExtResource("2_hr2ss")
 pitch_offset_range = 0.2
 volume_offset_range = 0.1
 
-[node name="Step1" type="AudioStreamPlayer" parent="List/StepRandom/Randomizer"]
+[node name="Step1" type="AudioStreamPlayer" parent="List/StepRandom/Randomizer" unique_id=1991281391]
 stream = ExtResource("2")
 bus = &"Effects"
 
-[node name="Step2" type="AudioStreamPlayer" parent="List/StepRandom/Randomizer"]
+[node name="Step2" type="AudioStreamPlayer" parent="List/StepRandom/Randomizer" unique_id=1461004525]
 stream = ExtResource("5")
 bus = &"Effects"
 
-[node name="ButtonSounds" parent="List/StepRandom" instance=ExtResource("15")]
-
-[node name="CoinPitched" type="Button" parent="List"]
+[node name="CoinPitched" type="Button" parent="List" unique_id=1772078201]
 layout_mode = 2
 text = "Coin Pitch"
 script = ExtResource("1_6ebyl")
 
-[node name="PitchedSequence" type="Node" parent="List/CoinPitched"]
+[node name="PitchedSequence" type="Node" parent="List/CoinPitched" unique_id=164511598]
 script = ExtResource("6_mdvf6")
 pitch_offset = 0.05
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="List/CoinPitched/PitchedSequence"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="List/CoinPitched/PitchedSequence" unique_id=5146125]
 stream = ExtResource("7")
 bus = &"Effects"
 
-[node name="ButtonSounds" parent="List/CoinPitched" instance=ExtResource("15")]
-
-[node name="BookSequence" type="Button" parent="List"]
+[node name="BookSequence" type="Button" parent="List" unique_id=1188747882]
 layout_mode = 2
 text = "Book Sequence"
 script = ExtResource("1_6ebyl")
 
-[node name="Sequence" type="Node" parent="List/BookSequence"]
+[node name="Sequence" type="Node" parent="List/BookSequence" unique_id=726570248]
 script = ExtResource("8_mthq2")
 reset_cooldown = 3.0
 
-[node name="Book1" type="AudioStreamPlayer" parent="List/BookSequence/Sequence"]
+[node name="Book1" type="AudioStreamPlayer" parent="List/BookSequence/Sequence" unique_id=2113992941]
 stream = ExtResource("9")
 bus = &"Effects"
 
-[node name="Book2" type="AudioStreamPlayer" parent="List/BookSequence/Sequence"]
+[node name="Book2" type="AudioStreamPlayer" parent="List/BookSequence/Sequence" unique_id=1495416605]
 stream = ExtResource("10")
 bus = &"Effects"
 
-[node name="Book3" type="AudioStreamPlayer" parent="List/BookSequence/Sequence"]
+[node name="Book3" type="AudioStreamPlayer" parent="List/BookSequence/Sequence" unique_id=155909065]
 stream = ExtResource("11")
 bus = &"Effects"
 
-[node name="ButtonSounds" parent="List/BookSequence" instance=ExtResource("15")]
-
-[node name="VoiceoverSequence" type="Button" parent="List"]
+[node name="VoiceoverSequence" type="Button" parent="List" unique_id=1047555870]
 layout_mode = 2
-text = "Voiceover Repat Sequence"
+text = "Voiceover Repeat Sequence"
 script = ExtResource("1_6ebyl")
 
-[node name="Sequence" type="Node" parent="List/VoiceoverSequence"]
+[node name="Sequence" type="Node" parent="List/VoiceoverSequence" unique_id=514408575]
 script = ExtResource("8_mthq2")
 reset_cooldown = 3.0
 repeat = true
 
-[node name="One" type="AudioStreamPlayer" parent="List/VoiceoverSequence/Sequence"]
+[node name="One" type="AudioStreamPlayer" parent="List/VoiceoverSequence/Sequence" unique_id=1913401479]
 stream = ExtResource("12")
 bus = &"Effects"
 
-[node name="Two" type="AudioStreamPlayer" parent="List/VoiceoverSequence/Sequence"]
+[node name="Two" type="AudioStreamPlayer" parent="List/VoiceoverSequence/Sequence" unique_id=71453248]
 stream = ExtResource("14")
 bus = &"Effects"
 
-[node name="Three" type="AudioStreamPlayer" parent="List/VoiceoverSequence/Sequence"]
+[node name="Three" type="AudioStreamPlayer" parent="List/VoiceoverSequence/Sequence" unique_id=1062175309]
 stream = ExtResource("13")
 bus = &"Effects"
 
-[node name="ButtonSounds" parent="List/VoiceoverSequence" instance=ExtResource("15")]
-
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=229198736]
 stream = ExtResource("1")
 autoplay = true
 bus = &"Music"
