@@ -15,30 +15,22 @@ var enabled := true :
 var shown := false
 
 
-@onready var resume_button: Button = get_node("CanvasLayer/PauseMenu/CenterLayout/Resume")
-@onready var exit_button: Button = get_node("CanvasLayer/PauseMenu/CenterLayout/Exit")
+@export var resume_button: Button
+@export var main_menu_button: Button
+@export var exit_button: Button
 
-@onready var main_volume_range: Range = get_node("CanvasLayer/PauseMenu/VolumeContainer/MainSlider")
-@onready var effects_volume_range: Range = get_node("CanvasLayer/PauseMenu/VolumeContainer/EffectsSlider")
-@onready var music_volume_range: Range = get_node("CanvasLayer/PauseMenu/VolumeContainer/MusicSlider")
-
-@onready var anim_player: AnimationPlayer = get_node("CanvasLayer/PauseMenu/AnimationPlayer")
+@export var anim_player: AnimationPlayer
 
 
 func _ready() -> void:
 	resume_button.pressed.connect(toggle_shown)
+	main_menu_button.pressed.connect(main_menu)
 	
 	exit_button.pressed.connect(exit)
 	if OS.get_name() == "Web":
 		exit_button.visible = false
 	
 	anim_player.animation_finished.connect(anim_finished)
-	
-	init_volumes()
-	AudioSettings.volumes_changed.connect(init_volumes)
-	main_volume_range.value_changed.connect(update_volumes)
-	effects_volume_range.value_changed.connect(update_volumes)
-	music_volume_range.value_changed.connect(update_volumes)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
@@ -56,6 +48,7 @@ func toggle_shown() -> void:
 			anim_player.play("Show")
 			get_tree().paused = true
 			shown = true
+			resume_button.grab_focus()
 		else:
 			anim_player.play("Hide")
 
@@ -64,20 +57,12 @@ func anim_finished(name: String) -> void:
 		get_tree().paused = false
 		shown = false
 
+func main_menu() -> void:
+	var project_main_scene_path = ProjectSettings.get_setting("application/run/main_scene")
+	# Pre-hide menu so we don't mess with puasing over top of the transiton
+	anim_player.play("Hide")
+	shown = false
+	TransitionLayer.transition_to(project_main_scene_path)
 
 func exit() -> void:
 	get_tree().quit()
-
-
-func init_volumes() -> void:
-	main_volume_range.value = AudioSettings.main_volume
-	effects_volume_range.value = AudioSettings.effects_volume
-	music_volume_range.value = AudioSettings.music_volume
-
-func update_volumes(value: float) -> void:
-	if main_volume_range.value != AudioSettings.main_volume:
-		AudioSettings.main_volume = main_volume_range.value
-	if effects_volume_range.value != AudioSettings.effects_volume:
-		AudioSettings.effects_volume = effects_volume_range.value
-	if music_volume_range.value != AudioSettings.music_volume:
-		AudioSettings.music_volume = music_volume_range.value

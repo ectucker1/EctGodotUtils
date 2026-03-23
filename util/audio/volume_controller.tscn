@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://c60j8g1ejaogb"]
+
+[ext_resource type="Script" uid="uid://bhyet8xq0tdmp" path="res://util/audio/volume_controller.gd" id="1_iv8ck"]
+
+[node name="VolumeController" type="GridContainer" unique_id=401136011]
+process_mode = 3
+offset_right = 391.0
+offset_bottom = 235.0
+columns = 3
+script = ExtResource("1_iv8ck")
+
+[node name="MainSlider" type="VSlider" parent="." unique_id=1766748827]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_horizontal = 1
+
+[node name="EffectsSlider" type="VSlider" parent="." unique_id=2084981065]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_horizontal = 1
+
+[node name="MusicSlider" type="VSlider" parent="." unique_id=644127686]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_horizontal = 1
+
+[node name="MainLabel" type="Label" parent="." unique_id=855340876]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Main"
+horizontal_alignment = 1
+
+[node name="EffectsLabel" type="Label" parent="." unique_id=1349391154]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "SFX"
+horizontal_alignment = 1
+
+[node name="MusicLabel" type="Label" parent="." unique_id=1767003440]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Music"
+horizontal_alignment = 1

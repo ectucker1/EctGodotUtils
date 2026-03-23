@@ -1,7 +1,7 @@
 extends Node
 
 
-@onready var anim_player: AnimationPlayer = get_node("CanvasLayer/Transition/AnimationPlayer")
+@export var anim_player: AnimationPlayer
 
 
 var transitioning := false
@@ -16,14 +16,15 @@ func transition_to(scene: String) -> void:
 		
 		get_tree().paused = true
 		PauseMenu.enabled = false
-		
-		anim_player.play("Out")
-		await anim_player.animation_finished
-		
+
+		anim_player.play("OutIn")
+
+func _switch_scene_to_next():
+	if transitioning:
 		get_tree().change_scene_to_file(next)
-		
-		anim_player.play("In")
-		await anim_player.animation_finished
-		
-		get_tree().paused = false
-		PauseMenu.enabled = true
+
+func _finish_transition():
+	get_tree().paused = false
+	PauseMenu.enabled = true
+	transitioning = false
+	next = ""

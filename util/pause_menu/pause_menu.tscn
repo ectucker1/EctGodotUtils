@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d122i3aho8gv3"]
+[gd_scene format=3 uid="uid://d122i3aho8gv3"]
 
 [ext_resource type="Script" uid="uid://dvt5rtb0gnccq" path="res://util/pause_menu/pause_menu.gd" id="1_8qw3a"]
+[ext_resource type="PackedScene" uid="uid://c60j8g1ejaogb" path="res://util/audio/volume_controller.tscn" id="2_5ll16"]
 
 [sub_resource type="Animation" id="2"]
 resource_name = "Hide"
@@ -27,6 +28,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Dimmer:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.5019608), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="3"]
@@ -55,6 +68,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Dimmer:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Show"
@@ -82,6 +107,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0, 1.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Dimmer:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.5019608)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qikg4"]
 _data = {
@@ -90,77 +127,72 @@ _data = {
 &"Show": SubResource("1")
 }
 
-[node name="PauseMenu" type="Node"]
+[node name="PauseMenu" type="Node" unique_id=1929892129 node_paths=PackedStringArray("resume_button", "main_menu_button", "exit_button", "anim_player")]
+process_mode = 3
 script = ExtResource("1_8qw3a")
+resume_button = NodePath("CanvasLayer/PauseMenu/CenterContainer/Panel/CenterLayout/Resume")
+main_menu_button = NodePath("CanvasLayer/PauseMenu/CenterContainer/Panel/CenterLayout/MainMenu")
+exit_button = NodePath("CanvasLayer/PauseMenu/CenterContainer/Panel/CenterLayout/Exit")
+anim_player = NodePath("CanvasLayer/PauseMenu/AnimationPlayer")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=51595221]
 layer = 100
 
-[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+[node name="Dimmer" type="ColorRect" parent="CanvasLayer" unique_id=767328923]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=1102302386]
 process_mode = 2
 layout_mode = 3
 anchor_top = -1.0
 anchor_right = 1.0
 
-[node name="CenterLayout" type="VBoxContainer" parent="CanvasLayer/PauseMenu"]
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -31.0
-offset_right = 32.0
-offset_bottom = 31.0
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/PauseMenu" unique_id=1396890635]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Title" type="Label" parent="CanvasLayer/PauseMenu/CenterLayout"]
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/PauseMenu/CenterContainer" unique_id=1356776600]
 layout_mode = 2
-text = "Paused"
 
-[node name="Resume" type="Button" parent="CanvasLayer/PauseMenu/CenterLayout"]
+[node name="CenterLayout" type="VBoxContainer" parent="CanvasLayer/PauseMenu/CenterContainer/Panel" unique_id=563053422]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/PauseMenu/CenterContainer/Panel/CenterLayout" unique_id=354585808]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/Panel/CenterLayout" unique_id=640647373]
 layout_mode = 2
 text = "Resume"
 
-[node name="Exit" type="Button" parent="CanvasLayer/PauseMenu/CenterLayout"]
+[node name="MainMenu" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/Panel/CenterLayout" unique_id=660057322]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Exit" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/Panel/CenterLayout" unique_id=40948153]
 layout_mode = 2
 text = "Exit"
 
-[node name="VolumeContainer" type="GridContainer" parent="CanvasLayer/PauseMenu"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -121.0
-offset_top = -80.0
-grow_horizontal = 0
-grow_vertical = 0
-columns = 3
+[node name="Title2" type="Label" parent="CanvasLayer/PauseMenu/CenterContainer/Panel/CenterLayout" unique_id=327896978]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Volume"
+horizontal_alignment = 1
 
-[node name="MainSlider" type="VSlider" parent="CanvasLayer/PauseMenu/VolumeContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="VolumeContainer" parent="CanvasLayer/PauseMenu/CenterContainer/Panel/CenterLayout" unique_id=401136011 instance=ExtResource("2_5ll16")]
 layout_mode = 2
 
-[node name="EffectsSlider" type="VSlider" parent="CanvasLayer/PauseMenu/VolumeContainer"]
-layout_mode = 2
-
-[node name="MusicSlider" type="VSlider" parent="CanvasLayer/PauseMenu/VolumeContainer"]
-layout_mode = 2
-
-[node name="MainLabel" type="Label" parent="CanvasLayer/PauseMenu/VolumeContainer"]
-layout_mode = 2
-text = "Main"
-
-[node name="EffectsLabel" type="Label" parent="CanvasLayer/PauseMenu/VolumeContainer"]
-layout_mode = 2
-text = "SFX"
-
-[node name="MusicLabel" type="Label" parent="CanvasLayer/PauseMenu/VolumeContainer"]
-layout_mode = 2
-text = "Music"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/PauseMenu"]
-libraries = {
-"": SubResource("AnimationLibrary_qikg4")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/PauseMenu" unique_id=369622468]
+libraries/ = SubResource("AnimationLibrary_qikg4")
