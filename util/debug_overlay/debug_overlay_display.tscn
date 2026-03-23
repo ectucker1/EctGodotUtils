@@ -1,21 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmjlgotmklsdh"]
+[gd_scene format=3 uid="uid://cmjlgotmklsdh"]
 
 [ext_resource type="PackedScene" uid="uid://bkvyunbav70ve" path="res://util/debug_overlay/debug_text_overlay.tscn" id="2_amh7f"]
-[ext_resource type="PackedScene" uid="uid://bvof41dbvkdfh" path="res://util/live_values/live_values_overlay.tscn" id="3_6gf8k"]
 
-[node name="DebugOverlay" type="CanvasLayer"]
+[node name="DebugOverlay" type="CanvasLayer" unique_id=1537890257]
 
-[node name="Split" type="VSplitContainer" parent="."]
+[node name="Split" type="VSplitContainer" parent="." unique_id=292540019]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+split_offsets = PackedInt32Array(800)
 split_offset = 800
 
-[node name="DebugTextOverlay" parent="Split" instance=ExtResource("2_amh7f")]
-layout_mode = 2
-
-[node name="LiveValuesOverlay" parent="Split" instance=ExtResource("3_6gf8k")]
+[node name="DebugTextOverlay" parent="Split" unique_id=431756471 instance=ExtResource("2_amh7f")]
 layout_mode = 2

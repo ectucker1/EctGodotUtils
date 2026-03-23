@@ -16,11 +16,11 @@ Open in Godot 4.6+. The main scene is `res://test/test_main.tscn`, which auto-di
 
 Most utilities are autoloads accessed globally. The required autoloads and their order are defined in `project.godot`:
 
-- `LiveValues`, `DebugOverlayDisplay`, `InWorldDebugDisplay`, `DebugOverlay`, `AudioSettings`, `CameraEffects`, `PauseMenu`, `TransitionLayer`, `GlobalSounds`
+- `DebugOverlayDisplay`, `InWorldDebugDisplay`, `DebugOverlay`, `AudioSettings`, `CameraEffects`, `PauseMenu`, `TransitionLayer`, `GlobalSounds`
 
 ### Code Organization
 
-- `util/` — The library itself. Each feature has its own subdirectory (e.g., `util/camera/`, `util/audio/`, `util/live_values/`). Scene files (`.tscn`) are colocated with their scripts.
+- `util/` — The library itself. Each feature has its own subdirectory (e.g., `util/camera/`, `util/audio/`). Scene files (`.tscn`) are colocated with their scripts.
 - `test/` — Test/demo scenes. Each subdirectory contains a `*_test.tscn` that demonstrates a utility. New test scenes are auto-discovered by `generate_test_buttons.gd`.
 
 ## GDScript Conventions
@@ -38,9 +38,6 @@ This project follows the [official GDScript style guide](https://docs.godotengin
 ## Key Patterns
 
 - **Autoload access**: utilities called as singletons (e.g., `CameraEffects.add_trauma()`, `DebugOverlay.add_message()`)
-- **Model-View separation**: LiveValues separates data model from UI overlay
-- **Wrapper objects**: `LVRange` and `LVBool` wrap values with getters/setters and signals
-- **ConfigFile persistence**: settings saved/loaded via Godot's `ConfigFile` API to INI files
 - **Coroutines**: `await` used for scene transitions and timed operations
 
 ## Branch History
