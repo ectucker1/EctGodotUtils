@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkvyunbav70ve"]
+[gd_scene format=3 uid="uid://bkvyunbav70ve"]
 
 [ext_resource type="FontFile" uid="uid://cc8ac0b532jxa" path="res://util/debug_overlay/inconsolata.ttf" id="2"]
 [ext_resource type="Script" uid="uid://b8qpmcimyuk8o" path="res://util/debug_overlay/debug_text_display.gd" id="2_f1nmq"]
@@ -8,6 +8,15 @@ fallbacks = Array[Font]([ExtResource("2"), ExtResource("2")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -19,8 +28,13 @@ cache/0/32/0/descent = 0.0
 cache/0/32/0/underline_position = 0.0
 cache/0/32/0/underline_thickness = 0.0
 cache/0/32/0/scale = 1.0
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
 
-[node name="DebugTextOverlay" type="Control"]
+[node name="DebugTextOverlay" type="Control" unique_id=2012806926]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="DebugTextDisplay" type="RichTextLabel" parent="."]
+[node name="DebugTextDisplay" type="RichTextLabel" parent="." unique_id=1255646470]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -37,7 +51,6 @@ offset_left = 20.0
 offset_top = 20.0
 mouse_filter = 2
 theme_override_fonts/normal_font = SubResource("1")
-theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "Test"
 script = ExtResource("2_f1nmq")
