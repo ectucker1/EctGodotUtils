@@ -1,12 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx2w00n8i2clv"]
+[gd_scene format=3 uid="uid://bx2w00n8i2clv"]
 
 [ext_resource type="Texture2D" uid="uid://bmgfxim7pxr3u" path="res://icon.png" id="1"]
 [ext_resource type="Script" uid="uid://bxa4esokdp3ph" path="res://test/live_values/live_values_test.gd" id="2_6kbvf"]
 
-[node name="LiveValuesTest" type="Node2D"]
+[node name="LiveValuesTest" type="Node2D" unique_id=1531309290]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=818677969]
 position = Vector2(886, 457)
 scale = Vector2(8, 8)
 texture = ExtResource("1")
 script = ExtResource("2_6kbvf")
+test_speed = 0.05

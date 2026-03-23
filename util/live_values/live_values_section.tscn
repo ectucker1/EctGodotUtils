@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://bb303k6xynejy"]
-
-[node name="Values" type="ScrollContainer"]
-custom_minimum_size = Vector2(700, 0)
-offset_right = 515.0
-offset_bottom = 148.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2

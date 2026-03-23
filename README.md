@@ -10,7 +10,6 @@ See the [3.x-mono](https://github.com/ectucker1/EctGodotUtils/tree/3.x-mono) or 
 
 Some examples of utilities included (not comprehensive):
 - Debug overlay for printing text and displaying vectors
-- LiveValues overlay for changing constants
 - Screenshake, hitstop, and camera kickback
 - Verlet physics for hair and rope
 - Scene transitions
