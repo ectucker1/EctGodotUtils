@@ -1,0 +1,120 @@
+name: Export Game
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "*"
+
+env:
+  EXPORT_NAME: ectgodotutils
+  GODOT_VERSION: 4.6.1
+
+jobs:
+  export-linux:
+    name: Linux Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.6.1
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Setup
+        run: |
+          mkdir -v -p build/$EXPORT_NAME-linux
+          mkdir -p ~/.local/share/godot/export_presets
+      - name: Export
+        run: godot -v --headless --export-release "Linux" ./build/$EXPORT_NAME-linux/$EXPORT_NAME.x86_64
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.EXPORT_NAME }}-linux
+          path: build/${{ env.EXPORT_NAME }}-linux
+
+  export-windows:
+    name: Windows Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.6.1
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Setup
+        run: |
+          mkdir -v -p build/$EXPORT_NAME-windows
+          mkdir -p ~/.local/share/godot/export_presets
+      - name: Export
+        run: godot -v --headless --export-release "Windows Desktop" ./build/$EXPORT_NAME-windows/$EXPORT_NAME.exe
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.EXPORT_NAME }}-windows
+          path: build/${{ env.EXPORT_NAME }}-windows
+
+  export-mac:
+    name: macOS Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.6.1
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Setup
+        run: |
+          mkdir -v -p build/$EXPORT_NAME-mac
+          mkdir -p ~/.local/share/godot/export_presets
+      - name: Export
+        run: godot -v --headless --export-release "macOS" ./build/$EXPORT_NAME-mac/$EXPORT_NAME.zip
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.EXPORT_NAME }}-mac
+          path: build/${{ env.EXPORT_NAME }}-mac
+
+  export-web:
+    name: Web Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.6.1
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Setup
+        run: |
+          mkdir -v -p build/web
+          mkdir -p ~/.local/share/godot/export_presets
+      - name: Export
+        run: godot -v --headless --export-release "Web" ./build/web/index.html
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.EXPORT_NAME }}-web
+          path: build/web
+
+  deploy-pages:
+    name: Deploy to GitHub Pages
+    needs: export-web
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download Web Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.EXPORT_NAME }}-web
+          path: public
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
