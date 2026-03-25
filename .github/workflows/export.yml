@@ -26,6 +26,7 @@ jobs:
       - name: Setup
         run: |
           mkdir -v -p build/$EXPORT_NAME-linux
+          mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
       - name: Export
         run: godot -v --headless --export-release "Linux" ./build/$EXPORT_NAME-linux/$EXPORT_NAME.x86_64
@@ -49,6 +50,7 @@ jobs:
       - name: Setup
         run: |
           mkdir -v -p build/$EXPORT_NAME-windows
+          mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
       - name: Export
         run: godot -v --headless --export-release "Windows Desktop" ./build/$EXPORT_NAME-windows/$EXPORT_NAME.exe
@@ -72,6 +74,7 @@ jobs:
       - name: Setup
         run: |
           mkdir -v -p build/$EXPORT_NAME-mac
+          mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
       - name: Export
         run: godot -v --headless --export-release "macOS" ./build/$EXPORT_NAME-mac/$EXPORT_NAME.zip
@@ -94,6 +97,8 @@ jobs:
       - name: Setup
         run: |
           mkdir -v -p build/$EXPORT_NAME-web
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
       - name: Export
         run: godot -v --headless --export-release "Web" ./build/$EXPORT_NAME-web/index.html
       - name: Upload Artifact
