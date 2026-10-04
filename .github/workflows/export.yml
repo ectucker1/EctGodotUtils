@@ -19,7 +19,7 @@ jobs:
       image: barichello/godot-ci:4.7.2
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: recursive
           lfs: true
@@ -33,7 +33,7 @@ jobs:
       - name: Export
         run: godot -v --headless --export-release "Linux" ./build/$EXPORT_NAME-linux/$EXPORT_NAME.x86_64
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.EXPORT_NAME }}-linux
           path: build/${{ env.EXPORT_NAME }}-linux
@@ -45,7 +45,7 @@ jobs:
       image: barichello/godot-ci:4.7.2
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: recursive
           lfs: true
@@ -59,7 +59,7 @@ jobs:
       - name: Export
         run: godot -v --headless --export-release "Windows Desktop" ./build/$EXPORT_NAME-windows/$EXPORT_NAME.exe
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.EXPORT_NAME }}-windows
           path: build/${{ env.EXPORT_NAME }}-windows
@@ -71,7 +71,7 @@ jobs:
       image: barichello/godot-ci:4.7.2
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: recursive
           lfs: true
@@ -85,7 +85,7 @@ jobs:
       - name: Export
         run: godot -v --headless --export-release "macOS" ./build/$EXPORT_NAME-mac/$EXPORT_NAME.zip
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.EXPORT_NAME }}-mac
           path: build/${{ env.EXPORT_NAME }}-mac
@@ -97,7 +97,7 @@ jobs:
       image: barichello/godot-ci:4.7.2
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: recursive
           lfs: true
@@ -111,7 +111,7 @@ jobs:
       - name: Export
         run: godot -v --headless --export-release "Web" ./build/$EXPORT_NAME-web/index.html
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.EXPORT_NAME }}-web
           path: build/${{ env.EXPORT_NAME }}-web
@@ -128,14 +128,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Download Web Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: ${{ env.EXPORT_NAME }}-web
           path: public
       - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: public
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
