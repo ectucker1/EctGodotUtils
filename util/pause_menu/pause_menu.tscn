@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dvt5rtb0gnccq" path="res://util/pause_menu/pause_menu.gd" id="1_8qw3a"]
 [ext_resource type="PackedScene" uid="uid://c60j8g1ejaogb" path="res://util/audio/volume_controller.tscn" id="2_5ll16"]
+[ext_resource type="Script" uid="uid://clc28i66wl32e" path="res://util/pause_menu/fullscreen_toggle.gd" id="2_rf8np"]
 
 [sub_resource type="Animation" id="2"]
 resource_name = "Hide"
@@ -186,6 +187,17 @@ layout_mode = 2
 text = "Exit"
 
 [node name="Title2" type="Label" parent="CanvasLayer/PauseMenu/CenterContainer/Panel/CenterLayout" unique_id=327896978]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Options"
+horizontal_alignment = 1
+
+[node name="FullscreenToggle" type="CheckButton" parent="CanvasLayer/PauseMenu/CenterContainer/Panel/CenterLayout" unique_id=2053479058]
+layout_mode = 2
+text = "Fullscreen"
+script = ExtResource("2_rf8np")
+
+[node name="Title3" type="Label" parent="CanvasLayer/PauseMenu/CenterContainer/Panel/CenterLayout" unique_id=1052247162]
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
 text = "Volume"
