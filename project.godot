@@ -23,7 +23,7 @@ DebugOverlay="*res://util/debug_overlay/debug_overlay.gd"
 AudioSettings="*res://util/audio/audio_settings.gd"
 GlobalSounds="*res://util/audio/global_sounds.tscn"
 UiSoundConnector="*uid://c5pshemmbfsxc"
-CameraEffects="*res://util/camera/camera_effects.gd"
+CameraEffects="*uid://cvbgini30ani7"
 PauseMenu="*res://util/pause_menu/pause_menu.tscn"
 TransitionLayer="*res://util/transition/transition_layer.tscn"
 
@@ -73,3 +73,4 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.16078432, 0.14901961, 0.20392157, 1)

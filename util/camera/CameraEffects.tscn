@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cvbgini30ani7"]
+
+[ext_resource type="Script" uid="uid://bo1a30qsdq55r" path="res://util/camera/camera_effects.gd" id="1_usg64"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sjoje"]
+noise_type = 0
+frequency = 0.4
+fractal_octaves = 6
+fractal_lacunarity = 5.0
+
+[node name="CameraEffects" type="Node" unique_id=1227496755]
+script = ExtResource("1_usg64")
+noise = SubResource("FastNoiseLite_sjoje")

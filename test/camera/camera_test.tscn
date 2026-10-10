@@ -1,20 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnba66c36onfy"]
+[gd_scene format=3 uid="uid://cnba66c36onfy"]
 
 [ext_resource type="Script" uid="uid://vjnt8vtuxulg" path="res://test/camera/camera_test.gd" id="1_2asfd"]
+[ext_resource type="PackedScene" uid="uid://dpabh43k06xgj" path="res://test/_shared/test_tilemap.tscn" id="2_al7tp"]
 [ext_resource type="Script" uid="uid://cu5whb37rt5d8" path="res://util/camera/effects_camera_2d.gd" id="2_v2o8y"]
 
-[sub_resource type="FastNoiseLite" id="1"]
+[node name="CameraTest" type="Node2D" unique_id=38576755]
 
-[sub_resource type="NoiseTexture2D" id="2"]
-width = 2048
-height = 2048
-noise = SubResource("1")
+[node name="Camera2D" type="Camera2D" parent="." unique_id=983396049]
+position = Vector2(514, -136)
+script = ExtResource("2_v2o8y")
 
-[node name="CameraTest" type="Node2D"]
+[node name="Scale" parent="." unique_id=652502290 instance=ExtResource("2_al7tp")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=287381860]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=109770377]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=325747199]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -313.0
+offset_top = -83.0
+offset_right = 313.0
+grow_horizontal = 2
+grow_vertical = 0
 script = ExtResource("1_2asfd")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("2")
+[node name="Shake" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=424222528]
+layout_mode = 2
+text = "Shake"
 
-[node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("2_v2o8y")
+[node name="BigShake" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=1252942509]
+layout_mode = 2
+text = "Big Shake"
+
+[node name="Hitstop" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=497924778]
+layout_mode = 2
+text = "Hitstop"
+
+[node name="Kickback" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=1248677850]
+layout_mode = 2
+text = "Kickback"

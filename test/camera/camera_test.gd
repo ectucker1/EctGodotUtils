@@ -1,15 +1,8 @@
-extends Node2D
+extends Control
 
 
-func _physics_process(_delta: float) -> void:
-	if randi() % 30 == 0:
-		CameraEffects.add_trauma(0.2)
-
-	if randi() % 60 == 0:
-		CameraEffects.add_trauma(0.5)
-
-	if randi() % 20 == 0:
-		CameraEffects.hitstop(0.3)
-
-	if randi() % 30 == 0:
-		CameraEffects.kickback(Vector2.RIGHT, 64.0)
+func _ready() -> void:
+	$Shake.pressed.connect(func(): CameraEffects.add_trauma(0.2))
+	$BigShake.pressed.connect(func(): CameraEffects.add_trauma(0.6))
+	$Hitstop.pressed.connect(func(): CameraEffects.hitstop(0.3))
+	$Kickback.pressed.connect(func(): CameraEffects.kickback(Vector2.RIGHT, 32.0))
