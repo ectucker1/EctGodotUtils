@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cyr17jn64ctxo" path="res://util/audio/press.ogg" id="3_yh5r5"]
 
 [node name="GlobalSounds" type="Node" unique_id=516643137]
+process_mode = 3
 script = ExtResource("1_31spj")
 
 [node name="Hover" type="Node" parent="." unique_id=1436362784]
